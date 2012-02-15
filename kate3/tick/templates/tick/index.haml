@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load thumbnail %}
 
 {% block content %}
 
@@ -11,11 +11,11 @@
 				A repository of instructional lesson plans, activities, and resources for teachers in Kentucky
 
 .row
-    .span7
+    .span8
 
         %form
             .well.form-search
-                %input.span4.search-query{:type => "text", :name => "keyword", :placeholder => "Search..."}
+                %input.span4.search-query{ :type => "text", :name => "keyword", :placeholder => "Search..."}
 
             .form-horizontal
                 %fieldset
@@ -49,5 +49,18 @@
                     .form-actions
                         %button.btn.btn-large.btn-primary{:type => "submit"} Search
                         %button.btn.btn-large{:type => "reset"} Clear
+    
+    .span4
+        .well
+            %h6 Prize Giveway
+            {{ notice.body_html|safe }}
+
+        .well
+            %h6 Announcement
+            {{ announcement.body_html|safe }}
+            {% if announcement.picture %}
+                %p
+                    %img{:src => "/media/{{ announcement.picture }}"}
+            {% endif %}
 
 {% endblock %}
