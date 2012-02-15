@@ -10,10 +10,15 @@ from tick.forms.search import FullSearchForm
 from utils.get_url import get_url
 
 def index(request):
+    if request.GET.has_key('keyword'):
+        form = FullSearchForm(request.GET)
+    else:
+        form = FullSearchForm()
+
     context = {
         'announcement': Announcement.objects.latest('created_at'),
         'notice': Notice.objects.latest('created_at'),
-        'form': FullSearchForm(),
+        'form': form,
     }
 
     return render_to_response('tick/index.haml',
@@ -29,11 +34,12 @@ def search(request):
         print form
         return HttpResponse('hey')
     
-    paginator = Paginator(resources, 20)
+    paginator = Paginator(resources, 15)
     page = int(request.GET.get('page', 1))
 
     context = {
         'resources': paginator.page(page).object_list,
+        'this_page': paginator.page(page),
         'paginator': paginator,
         'page': page,
         'url': get_url(request)

@@ -4,7 +4,11 @@
  
 %form{:action => "{% url tick_search %}", :method => "get"}
     .well.form-search
-        %input.span4.search-query{ :type => "text", :name => "keyword", :placeholder => "Search..."}
+        {% if form.keyword.value %}
+            %input.span4.search-query{ :type => "text", :name => "keyword", :placeholder => "Search TICK...", :value => "{{ form.keyword.value }}"}
+        {% else %}
+            %input.span4.search-query{ :type => "text", :name => "keyword", :placeholder => "Search TICK..." }
+        {% endif %}
 
     .form-horizontal
         %fieldset

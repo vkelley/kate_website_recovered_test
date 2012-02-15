@@ -2,9 +2,65 @@
 
 {% block tick_content %}
 
-%ul
-- for resource in resources
-   %h3 {{ resource }}
-   %p {{ resource.description }}
+.span9
+    .page-header
+        %h2
+            Search Results
+            %small
+                %a{:href => "{% url tick_index %}?{{ url }}"} Modify Search
+
+    {% if paginator.count > 1 %}
+        .pagination
+            %ul
+                {% if this_page.has_previous %}
+                    %li
+                        %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.previous_page_number }}"} &larr;
+                {% else %}
+                    %li.disabled
+                        %a &larr;
+                {% endif %}
+
+                %li.disabled
+                    %a Page {{ page }} of {{ paginator.num_pages }}
+
+                {% if this_page.has_next %}
+                    %li
+                        %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.next_page_number }}"} &rarr;
+                {% else %}
+                    %li.disabled
+                        %a &rarr;
+                {% endif %}
+    {% endif %}
+
+    %ul
+    - for resource in resources
+        %h3
+            %a{:href => ""}
+                {{ resource }}
+        %p {{ resource.description|striptags|truncatewords:50|safe }}
+        %hr
+    
+    {% if paginator.count > 1 %}
+        .pagination
+            %ul
+                {% if this_page.has_previous %}
+                    %li
+                        %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.previous_page_number }}"} &larr;
+                {% else %}
+                    %li.disabled
+                        %a &larr;
+                {% endif %}
+
+                %li.disabled
+                    %a Page {{ page }} of {{ paginator.num_pages }}
+
+                {% if this_page.has_next %}
+                    %li
+                        %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.next_page_number }}"} &rarr;
+                {% else %}
+                    %li.disabled
+                        %a &rarr;
+                {% endif %}
+    {% endif %}
 
 {% endblock %}
