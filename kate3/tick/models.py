@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 
 from core.models import ContentArea, Level
 from utils.filter_text import *
+from utils.stem import get_wildcard_stem
         
 class CoreContentManager(models.Manager):
     """
@@ -366,7 +367,6 @@ class PublicQuerySet(models.query.QuerySet):
         queries = []
         
         # Create stem string
-        from kate.utils.stem import get_wildcard_stem
         stem_list = []
         stem_string = get_wildcard_stem(keywords) # Custom function I wrote, not part of the library
         

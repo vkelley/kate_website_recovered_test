@@ -2,7 +2,7 @@
 
 {% block tick_content %}
  
-%form
+%form{:action => "{% url tick_search %}", :method => "get"}
     .well.form-search
         %input.span4.search-query{ :type => "text", :name => "keyword", :placeholder => "Search..."}
 

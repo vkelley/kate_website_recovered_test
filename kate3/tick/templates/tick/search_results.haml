@@ -1,0 +1,10 @@
+{% extends "tick/base_tick.haml" %}
+
+{% block tick_content %}
+
+%ul
+- for resource in resources
+   %h3 {{ resource }}
+   %p {{ resource.description }}
+
+{% endblock %}

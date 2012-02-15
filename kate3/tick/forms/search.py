@@ -25,5 +25,3 @@ class FullSearchForm(forms.Form):
     sub_focus = forms.ModelChoiceField(queryset=SubFocus.objects.all(),
                                        required=False,
                                        empty_label='Any')
-    advanced = forms.CharField(max_length=100,
-                               widget=forms.HiddenInput(attrs={'value': '1'}))
