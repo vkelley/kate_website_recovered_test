@@ -1,66 +1,43 @@
-{% extends "base.html" %}
-{% load thumbnail %}
+{% extends "tick/base_tick.haml" %}
 
-{% block content %}
+{% block tick_content %}
+ 
+%form
+    .well.form-search
+        %input.span4.search-query{ :type => "text", :name => "keyword", :placeholder => "Search..."}
 
-%header
-	.page-header
-		%h1
-			TICK
-			%small
-				A repository of instructional lesson plans, activities, and resources for teachers in Kentucky
+    .form-horizontal
+        %fieldset
+            %legend Refine your search
 
-.row
-    .span8
+            .control-group
+                %label.control-label Kentucky Core Content
+                .controls
+                    {{ form.content_standards }}
 
-        %form
-            .well.form-search
-                %input.span4.search-query{ :type => "text", :name => "keyword", :placeholder => "Search..."}
+            .control-group
+                %label.control-label Common Core Content
+                .controls
+                    {{ form.common_core_standards }}
 
-            .form-horizontal
-                %fieldset
-                    %legend Additional
+            .control-group
+                %label.control-label Level
+                .controls
+                    {{ form.levels }}
 
-                    .control-group
-                        %label.control-label Kentucky Core Content
-                        .controls
-                            {{ form.content_standards }}
+            .control-group
+                %label.control-label Subject
+                .controls
+                    {{ form.content_areas }}
 
-                    .control-group
-                        %label.control-label Common Core Content
-                        .controls
-                            {{ form.common_core_standards }}
+            .control-group
+                %label.control-label Resource Type
+                .controls
+                    {{ form.sub_focus }}
 
-                    .control-group
-                        %label.control-label Level
-                        .controls
-                            {{ form.levels }}
+            .form-actions
+                %button.btn.btn-primary{:type => "submit"} Search
+                %button.btn{:type => "reset"} Clear
 
-                    .control-group
-                        %label.control-label Subject
-                        .controls
-                            {{ form.content_areas }}
-
-                    .control-group
-                        %label.control-label Resource Type
-                        .controls
-                            {{ form.sub_focus }}
-
-                    .form-actions
-                        %button.btn.btn-large.btn-primary{:type => "submit"} Search
-                        %button.btn.btn-large{:type => "reset"} Clear
-    
-    .span4
-        .well
-            %h6 Prize Giveway
-            {{ notice.body_html|safe }}
-
-        .well
-            %h6 Announcement
-            {{ announcement.body_html|safe }}
-            {% if announcement.picture %}
-                %p
-                    %img{:src => "/media/{{ announcement.picture }}"}
-            {% endif %}
 
 {% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+%header
+    .page-header
+        %h1
+            TICK
+            %small
+                A repository of instructional lesson plans, activities, and resources for teachers in Kentucky
+
+.row
+    .span3
+        .well
+            %ul.nav.nav-list
+                %li.nav-header TICK Links
+                %li
+                    %a{:href => "#"}
+                        %i.icon-black.icon-home
+                        Search TICK
+                %li
+                    %a{:href => "#"}
+                        %i.icon-black.icon-info-sign
+                        About TICK
+                %li
+                    %a{:href => "#"}
+                        %i.icon-black.icon-comment
+                        News
+                %li
+                    %a{:href => "#"}
+                        %i.icon-black.icon-gift
+                        Prizes
+                %li
+                    %a{:href => "#"}
+                        %i.icon-black.icon-bookmark
+                        Favorites
+                %li.nav-header Resources
+                %li
+                    %a{:href => "#"}
+                        %i.icon-black.icon-book
+                        Submitted
+                %li
+                    %a{:href => "#"}
+                        %i.icon-black.icon-share
+                        Submit
+    .span9
+        {% block tick_content %}{% endblock %}
+{% endblock %}
