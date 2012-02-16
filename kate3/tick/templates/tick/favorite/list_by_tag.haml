@@ -1,0 +1,22 @@
+{% extends "tick/base_tick.haml" %}
+
+{% block tick_content %}
+
+.row
+    .span5
+        .page-header
+            %h2 Favorites with Tag {{ tag|title }}
+        - for favorite in favorites
+            {% include "tick/favorite/_favorite.haml" %}
+
+    .span4
+        .page-header
+            %h2 Tags
+        %ul.unstyled
+            - for tag in tags
+                %li 
+                    %h4 
+                        %a{:href => "{% url tick_favorite_list_by_tag tag.id %}"}
+                            {{ tag|title }}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "tick/base_tick.haml" %}
+
+{% block tick_content %}
+
+.row
+    .span5
+        %h2 {{ resource}}
+        {{ resource.description|urlizetrunc:70|safe|linebreaks }}
+
+        %form{:action => "{% url tick_favorite_add resource.id %}", :method => "post"}
+            {% csrf_token %}
+            .form-horizontal
+                %fieldset
+                    %legend Add Favorite
+                    
+                    {% include "tick/favorite/_form.haml" %}
+
+                    .form-actions
+                        %button.btn.btn-primary{:type => "submit"} Submit
+                        %button.btn{:type => "reset"} Clear
+
+{% endblock %}

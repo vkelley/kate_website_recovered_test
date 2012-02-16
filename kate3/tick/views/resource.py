@@ -2,28 +2,12 @@ from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
-from django.views.generic.list_detail import *
+from django.views.generic.list_detail import RequestContext
 
 from tick.models import *
 from tick.forms.search import FullSearchForm
 
 from utils.get_url import get_url
-
-def index(request):
-    if request.GET.has_key('keyword'):
-        form = FullSearchForm(request.GET)
-    else:
-        form = FullSearchForm()
-
-    context = {
-        'announcement': Announcement.objects.latest('created_at'),
-        'notice': Notice.objects.latest('created_at'),
-        'form': form,
-    }
-
-    return render_to_response('tick/index.haml',
-                              context,
-                              context_instance=RequestContext(request))
 
 def search(request):
     # See if the form is valid
@@ -45,14 +29,16 @@ def search(request):
         'url': get_url(request)
     }
 
-    return render_to_response('tick/resource_list.haml',
+    return render_to_response('tick/resource/list.haml',
                               context,
                               context_instance=RequestContext(request))
 
 def view(request, id):
     resource = get_object_or_404(Resource, pk=id)
-    return render_to_response('tick/resource_detail.haml',
-                              {'resource': resource},
+    favorite = None
+    if request.user.is_authenticated():
+        favorite = Favorite.objects.filter(resource=resource,
+                                           user=request.user)[0]
+    return render_to_response('tick/resource/view.haml',
+                              {'resource': resource, 'favorite': favorite},
                               context_instance=RequestContext(request))
-
-    

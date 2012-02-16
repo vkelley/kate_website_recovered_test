@@ -1,0 +1,35 @@
+%h3 
+    %a{:href => "{%url tick_resource favorite.resource.id %}"}
+        {{ favorite.resource }}
+%p
+    %small 
+        %em
+            Tags: {{ favorite.tags|join:", " }}
+%p {{ favorite.resource.description|safe|striptags }}
+.btn-group
+    {% if resource.url %}
+        %a.btn{:href => "{{ resource.get_resource_url }}"}
+            %i.icon-share-alt
+            View Resource
+    {% else %}
+        %a.btn{:href => "{{ resource.get_resource_url }}"}
+            %i.icon-download-alt
+            Download Resource
+    {% endif %}
+
+    {% if favorite %}
+        %a.btn{:href => "{% url tick_favorite_edit favorite.id %}"} 
+            %i.icon-edit
+            Edit Favorite
+    {% else %}
+        %a.btn{:href => "{% url tick_favorite_add resource.id %}"}
+            %i.icon-bookmark
+            Make Favorite
+    {% endif %}
+    %a.btn{:href => "{% url tick_favorite_delete favorite.id %}"}
+        %i.icon-remove
+        Delete
+%br 
+%p
+    %small Notes: {{ favorite.notes|safe }}
+%hr

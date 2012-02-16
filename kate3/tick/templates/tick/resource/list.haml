@@ -32,7 +32,6 @@
                 {% endif %}
     {% endif %}
 
-    %ul
     - for resource in resources
         %h3
             %a{:href => '{% url tick_resource resource.id %}'}
