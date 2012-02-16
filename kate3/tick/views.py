@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
 from django.views.generic.list_detail import *
 
 from tick.models import *
@@ -45,8 +45,14 @@ def search(request):
         'url': get_url(request)
     }
 
-    return render_to_response('tick/search_results.haml',
+    return render_to_response('tick/resource_list.haml',
                               context,
+                              context_instance=RequestContext(request))
+
+def view(request, id):
+    resource = get_object_or_404(Resource, pk=id)
+    return render_to_response('tick/resource_detail.haml',
+                              {'resource': resource},
                               context_instance=RequestContext(request))
 
     

@@ -11,7 +11,17 @@
   display: none;
   visibility: hidden;
 }
+.mobile-nav {
+  display: none;
+}
 @media (max-width: 480px) {
+  .mobile-nav {
+    display: block;
+    width: 345px;
+  }
+  .sub-nav-well {
+    display: none;
+  }
   .nav-collapse {
     -webkit-transform: translate3d(0, 0, 0);
   }
@@ -100,6 +110,12 @@
     display: block;
     width: auto;
     margin: 0;
+  }
+  .mobile-nav {
+    display: block;
+  }
+  .sub-nav-well {
+    display: none;
   }
 }
 @media (min-width: 768px) and (max-width: 980px) {

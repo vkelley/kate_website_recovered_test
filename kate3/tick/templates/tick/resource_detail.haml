@@ -1,0 +1,73 @@
+{% extends "tick/base_tick.haml" %}
+
+{% block tick_content %}
+
+.row
+    .span5
+        %h2 {{ resource.title }}
+        {{ resource.description|urlizetrunc:70|safe|linebreaks }}
+
+        %p
+            {% if resource.url %}
+                %a.btn{:href => "{{ resource.get_resource_url }}"} View Resource &rarr;
+            {% else %}
+                %a.btn{:href => "{{ resource.get_resource_url }}"}
+                    %i.icon-download-alt
+                    Download Resource
+            {% endif %}
+
+        {% if not resource.user.is_staff %}
+            %hr
+            %p
+                Contributed by {{ resource.user.username }}
+        {% endif %}
+
+        {% if resource.content_standards.all %}
+            %hr
+            %h5 Kentucky Core Content
+            {% for content_standard in resource.content_standards.all %}{% if not forloop.first %}, {% endif %}
+                <a href="#" rel="popover" data-original-title="{{ content_standard }}" data-content="{{ content_standard.description }}">{{ content_standard }}</a>{% endfor %}
+        {% endif %}
+
+        {% if object.common_core_standards.all %}
+            %hr
+            %h5 Common Core Content
+
+            {% for common_core in resource.common_core_standards.all %}{% if not forloop.first %}, {% endif %}
+                <a href="#" rel="popover" data-original-title="{{ common_core }}" data-content="{{ common_core.description }}">{{ common_core }}</a>{% endfor %}
+        {% endif %}
+
+        {% if resource.tech_standards.all %}
+            %hr
+            %h5 ISTE Technology Standards
+            %p
+                {% for tech_standard in resource.tech_standards.all %}{% if not forloop.first %}, {% endif %}
+                    <a href="#" rel="popover" data-original-title="{{ tech_standard }}" data-content="{{ tech_standard.description }}" data-position="top">{{ tech_standard }}</a>{% endfor %}
+        {% endif %}
+        
+        {% if resource.source %}
+            %hr
+            %h5 Source
+            {{ resource.source|safe|urlizetrunc:"40"|linebreaks }}
+        {% endif %}
+
+    .span2
+        %h6 Focus
+        %p {{ resource.focus.name }}
+
+        %h6 Sub Focus
+        %p {{ resource.sub_focus.name }}
+
+        %h6 Technology Component
+        %p {{ resource.tech_component.name }}
+        
+        %h6 Technology Sub Component
+        %p {{ resource.tech_sub_component.all|join:", " }}
+        
+        %h6 Content Areas
+        %p {{ resource.content_areas.all|join:", " }}
+        
+        %h6 Subject Levels
+        %p {{ resource.levels.all|join:", " }}
+
+{% endblock %}

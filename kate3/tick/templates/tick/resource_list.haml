@@ -35,7 +35,7 @@
     %ul
     - for resource in resources
         %h3
-            %a{:href => ""}
+            %a{:href => '{% url tick_resource resource.id %}'}
                 {{ resource }}
         %p {{ resource.description|striptags|truncatewords:50|safe }}
         %hr
