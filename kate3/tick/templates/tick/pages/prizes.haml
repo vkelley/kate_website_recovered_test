@@ -1,0 +1,11 @@
+{% extends "tick/base_tick.haml" %}
+
+{% block tick_content %}
+
+.row
+    .span5
+        .page-header
+            %h2 Current Prize Giveaway
+        {{ notice.body_html|safe }}
+
+{% endblock %}

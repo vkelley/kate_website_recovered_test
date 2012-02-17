@@ -1,5 +1,5 @@
 function create_mobile_nav() {
-    var mobileNav = $('ul.sub-nav').parent('div').after('<fieldset class="mobile-nav"></fieldset>').next().append('<select></select>')
+    var mobileNav = $('div.mobile-nav-box').after('<fieldset class="mobile-nav"></fieldset>').next().append('<select></select>')
     mobileNav.children('select').append('<option value="">TICK Navigation&hellip;</option>');
     $('ul.sub-nav a').each(function(idx, link) {
         mobileNav.children('select').append('<option value="'+link.href+'">&raquo; '+link.text+'</option>');

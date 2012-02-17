@@ -3,13 +3,13 @@
 {% block tick_content %}
 
 .row
-    .span5
+    .span6
         .page-header
             %h2 Favorites with Tag {{ tag|title }}
         - for favorite in favorites
             {% include "tick/favorite/_favorite.haml" %}
 
-    .span4
+    .span3
         .page-header
             %h2 Tags
         %ul.unstyled

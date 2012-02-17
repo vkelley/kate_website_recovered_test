@@ -30,4 +30,18 @@ def about(request):
     if count > 100:
         count = int(count/100) * 100
     count = locale.format('%d', count, True)
-    return render_to_response('tick/pages/about.haml', {'count': count}) 
+    return render_to_response('tick/pages/about.haml',
+                              {'count': count},
+                              context_instance=RequestContext(request)) 
+
+def news(request):
+    announcement = Announcement.objects.latest('created_at')
+    return render_to_response('tick/pages/news.haml',
+                              {'announcement': announcement},
+                              context_instance=RequestContext(request))
+
+def prizes(request):
+    notice = Notice.objects.latest('created_at')
+    return render_to_response('tick/pages/prizes.haml',
+                              {'notice': notice},
+                              context_instance=RequestContext(request))

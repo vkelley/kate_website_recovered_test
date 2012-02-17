@@ -28,11 +28,23 @@ urlpatterns = patterns('',
         'tick.views.resource.search',
         name='tick_search'),
 
+    url(r'^submitted/$',
+        'tick.views.resource.submitted',
+        name='tick_submitted'),
+
     url(r'^resource/(?P<id>\d+)/$',
         'tick.views.resource.view',
         name='tick_resource'),
         
     # Page Views
+
+    url(r'^news/$',
+        'tick.views.pages.news',
+        name='tick_news'),
+
+    url(r'^prizes/$',
+        'tick.views.pages.prizes',
+        name='tick_prizes'),
 
     url(r'^about/$',
         'tick.views.pages.about',

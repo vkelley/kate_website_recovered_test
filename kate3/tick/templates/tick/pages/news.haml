@@ -1,0 +1,22 @@
+{% extends "tick/base_tick.haml" %}
+
+{% block tick_content %}
+
+.row
+    .span9
+        .page-header
+            %h2 News
+.row
+    .span5
+        {{ announcement.body_html|safe }}
+        {% if announcement.picture %}
+            %p
+                %img{:src => "{{ announcement.picture.url }}"}
+        {% endif %}
+
+        %p
+            %a{:href => "{% url tick_prizes %}"} See what other prizes we are giving away
+    .span4
+        
+
+{% endblock %}

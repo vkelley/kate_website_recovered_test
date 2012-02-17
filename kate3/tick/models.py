@@ -555,7 +555,7 @@ class Resource(models.Model):
         return self.get_resource_url()
     
     def save(self):
-        from kate.logger.models import Entry
+        from logger.models import Entry
         logged = False
         if self.id:
             if self.published:

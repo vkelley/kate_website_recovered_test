@@ -1,0 +1,38 @@
+{% extends "tick/base_tick.haml" %}
+
+{% block tick_content %}
+
+.row
+    .span8
+        .page-header
+            %h2 My Resources {{ tag|title }}
+
+        .alert.alert-info
+            Note: Once a resource has been published, you can no longer edit it.
+        
+        {% if resources %}
+            %table.table.table-striped.table-condensed
+                %thead
+                    %th 
+                    %th Title
+                    %th Subject
+                    %th Date
+                %tbody
+                    - for resource in resources
+                        %tr
+                            %td.status 
+                                {% if resource.published %}
+                                    %span.label.label-success Published
+                                {% else %}
+                                    %span.label.label-warning Pending
+                                {% endif %}
+                            %td {{ resource.title }}
+                            %td {{ resource.levels.all|join:", " }}
+                            %td {{ resource.created }}
+        {% else %}
+            .alert.alert-warning
+                You have not submitted any resources yet!
+        {% endif %}
+            
+
+{% endblock %}

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
@@ -37,8 +38,17 @@ def view(request, id):
     resource = get_object_or_404(Resource, pk=id)
     favorite = None
     if request.user.is_authenticated():
-        favorite = Favorite.objects.filter(resource=resource,
-                                           user=request.user)[0]
+        favorites = Favorite.objects.filter(resource=resource,
+                                           user=request.user)
+        if favorites:
+            favorite = favorites[0]
     return render_to_response('tick/resource/view.haml',
                               {'resource': resource, 'favorite': favorite},
+                              context_instance=RequestContext(request))
+
+@login_required
+def submitted(request):
+    resources = Resource.objects.filter(user=request.user).order_by('-created')
+    return render_to_response('tick/resource/submitted.haml',
+                              {'resources': resources},
                               context_instance=RequestContext(request))

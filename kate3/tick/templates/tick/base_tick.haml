@@ -2,6 +2,7 @@
 
 {% block content %}
 %header
+    .mobile-nav-box
     .page-header
         %h1
             TICK
@@ -22,11 +23,11 @@
                         %i.icon-black.icon-info-sign
                         About TICK
                 %li
-                    %a{:href => "#"}
+                    %a{:href => "{% url tick_news %}"}
                         %i.icon-black.icon-comment
                         News
                 %li
-                    %a{:href => "#"}
+                    %a{:href => "{% url tick_prizes %}"}
                         %i.icon-black.icon-gift
                         Prizes
                 %li
@@ -35,7 +36,7 @@
                         Favorites
                 %li.nav-header My Resources
                 %li
-                    %a{:href => "#"}
+                    %a{:href => "{% url tick_submitted %}"}
                         %i.icon-black.icon-book
                         Submitted
                 %li
