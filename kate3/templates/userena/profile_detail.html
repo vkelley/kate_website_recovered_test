@@ -1,42 +1,46 @@
 {% extends 'userena/base_userena.html' %}
 {% load i18n %}
+{% load resources %}
 
 {% block title %}{% blocktrans with profile.user.username as username %}{{ username }}'s profile.{% endblocktrans %}{% endblock %}
 {% block content_title %}<h2>{{ profile.user.username }} {% if profile.user.get_full_name %}({{ profile.user.get_full_name }}){% endif %}</h2>{% endblock %}
 
-{% block content %}
+{% block userena_content %}
 <div class="white-box">
+  <div class="row">
+    <div class="span2">
+      <div id="details">
+        <img src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />
+        {% if profile.user.get_full_name %}
+        <p><strong>{% trans "Name" %}</strong><br /> {{ profile.user.get_full_name }}</p>
+        {% endif %}
+        <p><strong>{% trans "Username" %}</strong><br /> {{ profile.user.username }}</p>
+        {% if profile.age %}
+        <p><strong>{% trans "Age" %}</strong><br /> {{ profile.age }}</p>
+        {% endif %}
+        {% if profile.website %}
+        <p><strong>{% trans "Website" %}</strong><br /> <a href="{{ profile.website }}">{{ profile.website }}</a></p>
+        {% endif %}
+        {% if profile.location %}
+        <p><strong>{% trans "Location" %}</strong><br />{{ profile.location }}</p>
+        {% endif %}
+        {% if profile.about_me %}
+        <p><strong>{% trans "About me" %}</strong><br />{{ profile.about_me }}</p>
+        {% endif %}
+      </div>
+    </div>
 
-  {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
-  {% if user.username == profile.user.username %}
-  <ul id="box-nav">
-    <li><a href="{% url userena_profile_detail user.username %}">{% trans "View profile" %} &raquo;</a></li>
-    <li><a href="{% url userena_profile_edit user.username %}">{% trans "Edit details" %} &raquo;</a></li>
-    <li><a href="{% url userena_password_change user.username %}">{% trans "Change password" %} &raquo;</a></li>
-    <li><a href="{% url userena_email_change user.username %}">{% trans "Change email" %} &raquo;</a></li>
-  </ul>
-  {% endif %}
+    <div class="span6">
+      <h2>Resources Published</h2>
+      {% get_user_resources user %}
+      {% for resource in user_resources %}
+        <h3>{{ resource.title }}</h3>
+      {% endfor %}
+    </div>
 
-  <div id="details">
-    <img src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />
-    {% if profile.user.get_full_name %}
-    <p><strong>{% trans "Name" %}</strong><br /> {{ profile.user.get_full_name }}</p>
-    {% endif %}
-    {% if profile.user.email %}
-    <p><strong>{% trans "Email" %}</strong><br />{{ profile.user.email }}</p>
-    {% endif %}
-    {% if profile.age %}
-    <p><strong>{% trans "Age" %}</strong><br /> {{ profile.age }}</p>
-    {% endif %}
-    {% if profile.website %}
-    <p><strong>{% trans "Website" %}</strong><br /> <a href="{{ profile.website }}">{{ profile.website }}</a></p>
-    {% endif %}
-    {% if profile.location %}
-    <p><strong>{% trans "Location" %}</strong><br />{{ profile.location }}</p>
-    {% endif %}
-    {% if profile.about_me %}
-    <p><strong>{% trans "About me" %}</strong><br />{{ profile.about_me }}</p>
-    {% endif %}
+    <div class="span4">
+      {% include "userena/_account_nav.html" %} 
+    </div>
   </div>
 </div>
 {% endblock %}
