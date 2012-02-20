@@ -11,6 +11,16 @@ table td.status {
     width: 1%;
 }
 
+.no-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.no-list input[type="checkbox"] {
+  margin-bottom: 4px;
+}
+
 .mobile-nav {
   display: none;
 }

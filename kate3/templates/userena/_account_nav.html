@@ -1,7 +1,5 @@
 {% load i18n %}
 
-{% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
-{% if user.username == profile.user.username %}
 <div class="well">
   <ul class="nav nav-list">
     <li class="nav-header">Account Settings</li>
@@ -19,4 +17,3 @@
       {% trans "Change email" %}</a></li>
   </ul>
 </div>
-{% endif %}

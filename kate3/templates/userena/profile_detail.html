@@ -50,7 +50,9 @@
     </div>
 
     <div class="span4">
-      {% include "userena/_account_nav.html" %} 
+      {% if user.username == profile.user.username %}
+        {% include "userena/_account_nav.html" %}
+      {% endif %}
     </div>
   </div>
 </div>

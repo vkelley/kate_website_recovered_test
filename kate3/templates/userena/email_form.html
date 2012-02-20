@@ -3,19 +3,24 @@
 
 {% block content_title %}<h2>{% blocktrans with user.username as username %}Account &raquo; {{ username }}{% endblocktrans %}</h2>{% endblock %}
 
-{% block content %}
-<form action="" method="post">
-  <ul id="box-nav">
-    <li class="first"><a href="{% url userena_profile_detail user.username %}"><span>{% trans 'View profile' %}</span></a></li>
-    <li><a href="{% url userena_profile_edit user.username %}">{% trans "Edit profile" %}</a></li>
-    <li><a href="{% url userena_password_change user.username %}">{% trans "Change password" %}</a></li>
-    <li class="last selected"><a href="{% url userena_email_change user.username %}">{% trans "Change email" %}</a></li>
-  </ul>
-  {% csrf_token %}
-  <fieldset>
-    <legend>{% trans "Change email address" %}</legend>
-    {{ form.as_p }}
-  </fieldset>
-  <input type="submit" value="{% trans "Change email" %}" />
-</form>
+{% block userena_content %}
+<div class="row">
+  <div class="span6">
+    <form action="" method="post">
+      {% csrf_token %}
+      <h3>Change Email</h3>
+      <br />
+      <fieldset>
+        {{ form.as_p }}
+        <div class="form-actions">
+          <button class="btn btn-primary">Submit</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="span4 offset2">
+    {% include "userena/_account_nav.html" %}
+  </div>
+</div>
 {% endblock %}
