@@ -31,11 +31,16 @@
     </div>
 
     <div class="span6">
-      <h2>Resources Published</h2>
-      {% get_user_resources user %}
+      <div class="well">
+      <h2>Resources Published on TICK</h2>
+      <br />
+      {% get_user_resources profile.user %}
+      {{ sometest }}
       {% for resource in user_resources %}
-        <h3>{{ resource.title }}</h3>
+        <h3><a href="{% url tick_resource resource.id %}">{{ resource.title }}</a></h3>
+        <p>{{ resource.description|safe }}</p>
       {% endfor %}
+      </div>
     </div>
 
     <div class="span4">
