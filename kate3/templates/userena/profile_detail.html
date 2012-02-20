@@ -35,11 +35,17 @@
       <h2>Resources Published on TICK</h2>
       <br />
       {% get_user_resources profile.user %}
-      {{ sometest }}
-      {% for resource in user_resources %}
-        <h3><a href="{% url tick_resource resource.id %}">{{ resource.title }}</a></h3>
-        <p>{{ resource.description|safe }}</p>
-      {% endfor %}
+
+      {% if user_resources %}
+
+        {% for resource in user_resources %}
+          <h3><a href="{% url tick_resource resource.id %}">{{ resource.title }}</a></h3>
+          <p>{{ resource.description|safe }}</p>
+        {% endfor %}
+
+      {% else %}
+        <p><em>This user has not posted any resources yet.</em></p>
+      {% endif %}
       </div>
     </div>
 
