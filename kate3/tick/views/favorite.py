@@ -62,4 +62,4 @@ def delete(request, favorite_id):
     favorite = get_object_or_404(Favorite, pk=favorite_id, user=request.user)
     favorite.delete()
     request.user.message_set.create(message='Your favorite was deleted')
-    return HttpResponseRedirect(reverse('tick_index'))
+    return HttpResponseRedirect(reverse('tick_favorte_list'))
