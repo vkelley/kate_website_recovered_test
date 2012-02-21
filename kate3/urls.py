@@ -10,13 +10,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    # Accounts URLs
-    url(r'^accounts/(?P<username>[\.\w]+)/edit/$',
-       userena_views.profile_edit,
-       {'edit_profile_form': EditFormExtra},
-       name='userena_profile_edit'),
-
-    url(r'^accounts/', include('userena.urls')),
+    url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tick/', include('tick.urls')),
 )
