@@ -10,3 +10,30 @@ table td.status {
     text-align: right;
     width: 1%;
 }
+
+.no-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.no-list input[type="checkbox"] {
+  margin-bottom: 4px;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .mobile-nav {
+    display: block;
+    width: 345px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: block;
+  }
+}

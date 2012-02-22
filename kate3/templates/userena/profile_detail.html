@@ -1,0 +1,59 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+{% load resources %}
+
+{% block title %}{% blocktrans with profile.user.username as username %}{{ username }}'s profile.{% endblocktrans %}{% endblock %}
+{% block content_title %}<h2>{{ profile.user.username }} {% if profile.user.get_full_name %}({{ profile.user.get_full_name }}){% endif %}</h2>{% endblock %}
+
+{% block userena_content %}
+<div class="white-box">
+  <div class="row">
+    <div class="span2">
+      <div id="details">
+        <img src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />
+        {% if profile.user.get_full_name %}
+        <p><strong>{% trans "Name" %}</strong><br /> {{ profile.user.get_full_name }}</p>
+        {% endif %}
+        <p><strong>{% trans "Username" %}</strong><br /> {{ profile.user.username }}</p>
+        {% if profile.age %}
+        <p><strong>{% trans "Age" %}</strong><br /> {{ profile.age }}</p>
+        {% endif %}
+        {% if profile.website %}
+        <p><strong>{% trans "Website" %}</strong><br /> <a href="{{ profile.website }}">{{ profile.website }}</a></p>
+        {% endif %}
+        {% if profile.location %}
+        <p><strong>{% trans "Location" %}</strong><br />{{ profile.location }}</p>
+        {% endif %}
+        {% if profile.about_me %}
+        <p><strong>{% trans "About me" %}</strong><br />{{ profile.about_me }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="span6">
+      <div class="well">
+      <h2>Resources Published on TICK</h2>
+      <br />
+      {% get_user_resources profile.user %}
+
+      {% if user_resources %}
+
+        {% for resource in user_resources %}
+          <h3><a href="{% url tick_resource resource.id %}">{{ resource.title }}</a></h3>
+          <p>{{ resource.description|safe }}</p>
+        {% endfor %}
+
+      {% else %}
+        <p><em>This user has not posted any resources yet.</em></p>
+      {% endif %}
+      </div>
+    </div>
+
+    <div class="span4">
+      {% if user.username == profile.user.username %}
+        {% include "userena/_account_nav.html" %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

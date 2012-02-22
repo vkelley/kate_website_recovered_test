@@ -1,0 +1,52 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Account setup" %}{% endblock %}
+
+{% block content_title %}<h2>{% blocktrans with profile.user.username as username %}Account &raquo; {{ username }}{% endblocktrans %}</h2>{% endblock %}
+
+{% block userena_content %}
+
+<div class="row">
+  <div class="span6">
+
+    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">
+      {% csrf_token %}
+      <fieldset>
+        <legend>{% trans "Edit Profile" %}</legend>
+        <div class="control-group">
+          <label class="control-label">First Name</label>
+          <div class="controls">
+            {{ form.first_name }}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Last Name</label>
+          <div class="controls">
+            {{ form.last_name }}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Grade Levels</label>
+          <div class="controls no-list">
+            {{ form.levels }}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Content Areas</label>
+          <div class="controls no-list">
+            {{ form.content_areas }}
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary">Submit</button>
+        </div>
+      </fieldset>
+    </form>
+
+  </div>
+
+  <div class="span4 offset2">
+    {% include "userena/_account_nav.html" %} 
+  </div>
+{% endblock %}

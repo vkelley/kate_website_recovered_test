@@ -1,0 +1,123 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Signup" %}{% endblock %}
+
+{% block userena_content %}
+<div class="row">
+  <div class="span5">
+    <form action="" method="post" class="form-horizontal">
+      {% csrf_token %}
+      <fieldset>
+        <legend>Signup</legend>
+        <br />
+
+        {% if field.errors %}
+          <div class="alert alert-error">
+            {{ field.errors|join:", " }}
+          </div>
+        {% endif %}
+
+        {% if form.first_name.errors %}
+          <div class="control-group error">
+        {% else %}
+          <div class="control-group">
+        {% endif %}
+          <label class="control-label" for="input01">{{ form.first_name.label_tag }}</label>
+          <div class="controls">
+            {{ form.first_name }}
+          </div>
+        </div>
+
+        {% if form.last_name.errors %}
+          <div class="control-group error">
+        {% else %}
+          <div class="control-group">
+        {% endif %}
+          <label class="control-label" for="input01">{{ form.last_name.label_tag }}</label>
+          <div class="controls">
+            {{ form.last_name }}
+          </div>
+        </div>
+
+        {% if form.username.errors %}
+          <div class="control-group error">
+        {% else %}
+          <div class="control-group">
+        {% endif %}
+          <label class="control-label" for="input01">{{ form.username.label_tag }}</label>
+          <div class="controls">
+            {{ form.username }}
+          </div>
+        </div>
+
+        {% if form.email.errors %}
+          <div class="control-group error">
+        {% else %}
+          <div class="control-group">
+        {% endif %}
+          <label class="control-label" for="input01">{{ form.email.label_tag }}</label>
+          <div class="controls">
+            {{ form.email }}
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Password</legend>
+        {% if form.password1.errors %}
+          <div class="control-group error">
+        {% else %}
+          <div class="control-group">
+        {% endif %}
+          <label class="control-label" for="input01">{{ form.password1.label_tag }}</label>
+          <div class="controls">
+            {{ form.password1 }}
+          </div>
+        </div>
+
+        {% if form.password2.errors %}
+          <div class="control-group error">
+        {% else %}
+          <div class="control-group">
+        {% endif %}
+          <label class="control-label" for="input01">{{ form.password2.label_tag }}</label>
+          <div class="controls">
+            {{ form.password2 }}
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Extra Info <small>(optional)</small></legend>
+        {% if form.levels.errors %}
+          <div class="control-group error">
+        {% else %}
+          <div class="control-group">
+        {% endif %}
+          <label class="control-label" for="input01">{{ form.levels.label_tag }}</label>
+          <div class="controls no-list">
+            {{ form.levels }}
+          </div>
+        </div>
+
+        {% if form.content_areas.errors %}
+          <div class="control-group error">
+        {% else %}
+          <div class="control-group">
+        {% endif %}
+          <label class="control-label" for="input01">{{ form.content_areas.label_tag }}</label>
+          <div class="controls no-list">
+            {{ form.content_areas }}
+          </div>
+        </div>
+
+
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">{% trans "Signup"%}</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

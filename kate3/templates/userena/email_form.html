@@ -1,0 +1,26 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+
+{% block content_title %}<h2>{% blocktrans with user.username as username %}Account &raquo; {{ username }}{% endblocktrans %}</h2>{% endblock %}
+
+{% block userena_content %}
+<div class="row">
+  <div class="span6">
+    <form action="" method="post">
+      {% csrf_token %}
+      <h3>Change Email</h3>
+      <br />
+      <fieldset>
+        {{ form.as_p }}
+        <div class="form-actions">
+          <button class="btn btn-primary">Submit</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="span4 offset2">
+    {% include "userena/_account_nav.html" %}
+  </div>
+</div>
+{% endblock %}
