@@ -35,9 +35,30 @@ urlpatterns = patterns('',
     url(r'^resource/(?P<id>\d+)/$',
         'tick.views.resource.view',
         name='tick_resource'),
+
+    url(r'^resource/(?P<id>\d+)/edit/$',
+        'tick.views.resource.edit',
+        name='tick_resource_edit'),
+
+    # Submission Process
+    url(r'^submit/step1/$',
+        'tick.views.submit.step_1',
+        name='tick_submit_step_1'),
+
+    url(r'^submit/step2/(?P<id>\d+)/$',
+        'tick.views.submit.step_2',
+        name='tick_submit_step_2'),
+
+    # AJAX Views
+    url(r'^core_content_ajax/$',
+        'tick.views.resource.core_content_ajax',
+        name='tick_core_content_ajax'),
+
+    url(r'^common_core_ajax/$',
+        'tick.views.resource.common_core_ajax',
+        name='tick_common_core_ajax'),
         
     # Page Views
-
     url(r'^news/$',
         'tick.views.pages.news',
         name='tick_news'),

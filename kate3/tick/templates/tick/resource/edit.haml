@@ -1,0 +1,14 @@
+{% extends "tick/base_tick.haml" %}
+
+{% block tick_content %}
+
+.page-header
+    %h2 Edit Resource
+
+.row
+    .span6
+        .form
+            {% include "tick/submit/_step_1_form.haml" %}
+            {% include "tick/submit/_step_2_form.haml" %}
+
+{% endblock %}

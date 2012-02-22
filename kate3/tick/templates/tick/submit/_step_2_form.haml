@@ -1,0 +1,83 @@
+.control-group
+    %label.control-label {{ form.focus.label }}
+    .controls
+        {{ form.focus }}
+
+        {% if form.focus.errors %}
+            .alert.alert-error {{ form.focus.errors|join:", " }}
+        {% endif %}
+
+.control-group
+    %label.control-label {{ form.sub_focus.label }}
+    .controls
+        {{ form.sub_focus }}
+
+        {% if form.sub_focus.errors %}
+            .alert.alert-error {{ form.sub_focus.errors|join:", " }}
+        {% endif %}
+        
+%hr
+
+.control-group
+    %label.control-label {{ form.tech_component.label }}
+    .controls
+        {{ form.tech_component }}
+
+        {% if form.tech_component.errors %}
+            .alert.alert-error {{ form.tech_component.errors|join:", " }}
+        {% endif %} 
+
+.control-group
+    %label.control-label {{ form.tech_sub_component.label }}
+    .controls
+        {{ form.tech_sub_component }}
+        %p.help_block.help_text {{ form.tech_sub_component.help_text|safe }}
+
+        {% if form.focus.errors %}
+            .alert.alert-error {{ form.tech_sub_component.errors|join:", " }}
+        {% endif %} 
+
+%hr
+
+.control-group
+    %label.control-label {{ form.levels.label }}
+    .controls
+        {{ form.levels }}
+        %p.help_block.help_text {{ form.levels.help_text }}
+
+        {% if form.levels.errors %}
+            .alert.alert-error {{ form.levels.errors|join:", " }}
+        {% endif %}
+
+.control-group
+    %label.control-label {{ form.content_areas.label }}
+    .controls
+        {{ form.content_areas }}
+        %p.help_block.help_text {{ form.content_areas.help_text|safe }}
+
+        {% if form.content_areas.errors %}
+            .alert.alert-error {{ form.content_areas.errors|join:", " }}
+        {% endif %}
+
+#standards_select
+    %hr
+
+    .control-group
+        %label.control-label {{ form.content_standards.label }}
+        .controls
+            {{ form.content_standards }}
+            %p.help_block.help_text {{ form.content_standards.help_text }}
+
+            {% if form.content_standards.errors %}
+                .alert.alert-error {{ form.content_standards.errors|join:", " }}
+            {% endif %}
+
+    .control-group
+        %label.control-label {{ form.content_areas.label }}
+        .controls
+            {{ form.common_core_standards }}
+            %p.help_block.help_text {{ form.common_core_standards.help_text|safe }}
+
+            {% if form.common_core_standards.errors %}
+                .alert.alert-error {{ form.common_core_standards.errors|join:", " }}
+            {% endif %}

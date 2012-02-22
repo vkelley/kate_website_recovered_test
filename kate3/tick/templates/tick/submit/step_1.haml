@@ -1,0 +1,45 @@
+{% extends "tick/base_tick.haml" %}
+
+{% block tick_content %}
+
+.page-header
+  %h2 Submit TICK Resource
+
+%form{:enctype => "multipart/form-data", :method => "post", :action => "{% url tick_submit_step_1 %}"}
+    {% csrf_token %}
+    .row
+        .span5
+            %fieldset
+                .tabbable
+                    %ul.nav.nav-tabs.resource-types
+                        %li.active
+                            %a{:href => "#url", :data-toggle => "tab"} URL
+                        %li
+                            %a{:href => "#file", :data-toggle => "tab"} Upload File
+                    .tab-content
+                        .tab-pane.active{:id => "url"}
+                            %p {{ form.url }}
+                          
+                            {% if form.url.errors %}
+                                .alert.alert-error {{ form.url.errors|join:", " }}
+                            {% endif %}
+                        .tab-pane{:id => "file"}
+                            %p {{ form.filename }}</p>
+                            %p.well.help-text 
+                                Please upload online documents, videos, images, etc. 
+                                If submitting an interactive whiteboard lesson, please include a PDF file of each page in the lesson so those that do not have the software can view the lesson. Put all your files together in a "zipped" folder. For help with "zipping" files, click on this <a href="http://windows.microsoft.com/en-US/windows-vista/Compress-and-uncompress-files-zip-files">link</a>.
+                            {% if form.filename.errors %}
+                                <div class="error">{{ form.filename.errors }}</div>
+                            {% endif %}
+            
+                %hr
+
+                {% include "tick/submit/_step_1_form.haml" %}
+            
+    .row
+        .span9
+            .form-actions
+                %button.btn.btn-primary Submit      
+
+
+{% endblock %}

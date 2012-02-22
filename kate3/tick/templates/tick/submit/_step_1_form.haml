@@ -1,0 +1,25 @@
+.control-group
+    %label.control-label Title
+    .controls
+        {{ form.title }}
+        {% if form.title.errors %}
+            .alert.alert-error {{ form.title.errors|join:", " }}
+        {% endif %}
+    
+.control-group
+    %label.control-label Description
+    %p.help-block Please include a detailed description on how you use this resource in your teaching.
+    .controls
+        {{ form.description }}
+        {% if form.description.errors %}
+            .alert.alert-error {{ form.description.errors|join:", " }}
+        {% endif %} 
+    
+.control-group
+    %lable.control-label Source
+    %p.help-block Please enter the information for where this resource was found.<br /> If you are the creator, put your name and information in this field.
+    .controls
+        {{ form.source }}
+        {% if form.source.errors %}
+            .alert.alert-error {{ form.source.errors|join:", " }}
+        {% endif %}

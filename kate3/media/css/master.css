@@ -21,6 +21,17 @@ table td.status {
   margin-bottom: 4px;
 }
 
+.help_text {
+  font-size: 12px;
+  color: #777;
+}
+
+.resource-types {
+  margin-top: 15px;
+}
+
+/* Layout */
+
 .mobile-nav {
   display: none;
 }
