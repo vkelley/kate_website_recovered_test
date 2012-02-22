@@ -30,10 +30,16 @@ table td.status {
     display: block;
     width: 345px;
   }
+  .sub-nav-well {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
   .mobile-nav {
     display: block;
+  }
+  .sub-nav-well {
+    display: none;
   }
 }
