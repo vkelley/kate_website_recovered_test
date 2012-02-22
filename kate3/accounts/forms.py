@@ -17,7 +17,11 @@ class EditFormExtra(EditProfileForm):
         }
 
 class SignupFormExtra(SignupForm):
-    levels = forms.ModelMultipleChoiceField(queryset=Level.objects.all(), 
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    
+    levels = forms.ModelMultipleChoiceField(queryset=Level.objects.all(),
+                                            label="Grade Levels",
                                             widget= forms.CheckboxSelectMultiple(),
                                             required=False)
     content_areas = forms.ModelMultipleChoiceField(queryset=ContentArea.objects.all(),
@@ -26,6 +30,9 @@ class SignupFormExtra(SignupForm):
 
     def save(self):
         user = super(SignupFormExtra, self).save()
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.save()
 
         user_profile = user.get_profile()
 

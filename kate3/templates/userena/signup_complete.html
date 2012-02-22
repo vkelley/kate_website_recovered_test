@@ -5,14 +5,16 @@
 
 {% block content_title %}<h2>{% trans "Signup" %}</h2>{% endblock %}
 
-{% block content %}
-<p>{% trans "Thank you for signing up with us!" %}</p>
+{% block userena_content %}
+<div class="row">
+    <div class="span4">
+        <p>{% trans "Thank you for signing up with us!" %}</p>
 
-{% if userena_activation_required %}
-<p>{% blocktrans %}You have been send an e-mail with an activation link to the supplied email.{% endblocktrans %}</p>
-<p>{% blocktrans %}We will store your signup information for {{
-  userena_activation_days }} days on our server. {% endblocktrans %}</p>
-{% else  %}
-<p>{% blocktrans %}You can now use the supplied credentials to signin.{% endblocktrans %}</p>
-{% endif %}
+        {% if userena_activation_required %}
+        <p>{% blocktrans %}You have been send an e-mail with an activation link to the supplied email.{% endblocktrans %}</p>
+        {% else  %}
+        <p>{% blocktrans %}You can now use the supplied credentials to signin.{% endblocktrans %}</p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
