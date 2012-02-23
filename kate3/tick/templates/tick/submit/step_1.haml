@@ -15,7 +15,7 @@
                         %li.active
                             %a{:href => "#url", :data-toggle => "tab"} URL
                         %li
-                            %a{:href => "#file", :data-toggle => "tab"} Upload File
+                            %a{:href => "#file", :data-toggle => "tab", :id => "upload_link"} Upload File
                     .tab-content
                         .tab-pane.active{:id => "url"}
                             %p {{ form.url }}

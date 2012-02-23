@@ -17,6 +17,10 @@ $(document).ready(function() {
       e.preventDefault()
     });
 
+  $("#upload_link").click(function(e) {
+    $('#id_url').val('');
+  });
+
   $("#standards_select").hide();
   $("select#id_content_areas").change(function() {
     $("#standards_select").show();
