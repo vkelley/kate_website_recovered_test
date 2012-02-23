@@ -2,6 +2,7 @@ from datetime import date, datetime
 
 import tagging
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.contrib.contenttypes.models import ContentType
@@ -565,11 +566,11 @@ class Resource(models.Model):
                 else:
                     log = Entry.objects.log(self)
                 logged = True
-                if not resource.user.is_staff and not resource.published:
+                if not resource.published:
                     to_address = resource.user.email
-                    from_address = 'Tick@coe.murraystate.edu'
+                    from_address = settings.DEFAULT_FROM_EMAIL
                     subject = 'Dear TICK Contributor'
-                    message = render_to_string('tick/published_email.txt',
+                    message = render_to_string('tick/emails/published_email.txt',
                                                {'resource': resource, 'site': Site.objects.get_current()})
                     send_mail(subject, message, from_address, [to_address,])
             else:

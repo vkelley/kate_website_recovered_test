@@ -36,9 +36,11 @@ urlpatterns = patterns('',
         'tick.views.resource.view',
         name='tick_resource'),
 
-    url(r'^resource/(?P<id>\d+)/edit/$',
-        'tick.views.resource.edit',
-        name='tick_resource_edit'),
+    
+    # Edit page
+    #url(r'^resource/(?P<id>\d+)/edit/$',
+    #    'tick.views.resource.edit',
+    #    name='tick_resource_edit'),
 
     # Submission Process
     url(r'^submit/step1/$',

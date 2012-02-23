@@ -34,6 +34,8 @@
                     %a{:href => "{% url tick_favorite_list %}"}
                         %i.icon-black.icon-bookmark
                         Favorites
+                
+                {% if request.user.is_authenticated %}
                 %li.nav-header My Resources
                 %li
                     %a{:href => "{% url tick_submitted %}"}
@@ -43,6 +45,7 @@
                     %a{:href => "{% url tick_submit_step_1 %}"}
                         %i.icon-black.icon-share
                         Submit
+                {% endif %}
     .span9
         {% block tick_content %}{% endblock %}
 {% endblock %}

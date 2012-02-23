@@ -26,7 +26,13 @@
                                 {% else %}
                                     %span.label.label-warning Pending
                                 {% endif %}
-                            %td {{ resource.title }}
+                            %td 
+                                {% if resource.published %}
+                                    %a{:href => "{%url tick_resource resource.id %}"}
+                                        {{ resource.title }}
+                                {% else %}
+                                    {{ resource.title }}
+                                {% endif %}
                             %td {{ resource.levels.all|join:", " }}
                             %td {{ resource.created }}
         {% else %}

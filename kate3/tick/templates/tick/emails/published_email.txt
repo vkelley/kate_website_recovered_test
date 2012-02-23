@@ -1,0 +1,10 @@
+Dear Contributor:
+
+Thank you for your submission to the KATE Technology in Classrooms of Kentucky (TICK) database.  With the help of teacher collaborators like you, the technology resource repository will provide many useful activities for Kentucky teachers and students.  
+
+Congratulations, your resource, "{{ resource.title }}," has been edited, reviewed and published.  We hope that you will continue to use and contribute to TICK.
+
+Resource Link:
+http://{{ site }}{% url tick_resource resource.id %}
+
+KATE Staff
