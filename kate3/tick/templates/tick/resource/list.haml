@@ -2,64 +2,76 @@
 
 {% block tick_content %}
 
-.span9
-    .page-header
-        %h2
-            Search Results
-            %small
-                %a{:href => "{% url tick_index %}?{{ url }}"} Modify Search
+.row
+    .span9
+        .page-header
+            %h2
+                Search Results
+                %small
+                    %a{:href => "{% url tick_index %}?{{ url }}"} Modify Search
+        
+        .info
+            This search returned 
+            %a{:href => "{% url tick_index %}?{{ url }}"} 
+                {{ paginator.count }}
+                Result{{ paginator.count|pluralize }}
 
-    {% if paginator.count > 1 %}
-        .pagination
-            %ul
-                {% if this_page.has_previous %}
-                    %li
-                        %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.previous_page_number }}"} &larr;
-                {% else %}
+        {% if paginator.count > 1 %}
+            .pagination
+                %ul
+                    {% if this_page.has_previous %}
+                        %li
+                            %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.previous_page_number }}"} &larr;
+                    {% else %}
+                        %li.disabled
+                            %a &larr;
+                    {% endif %}
+
                     %li.disabled
-                        %a &larr;
-                {% endif %}
+                        %a Page {{ page }} of {{ paginator.num_pages }}
 
-                %li.disabled
-                    %a Page {{ page }} of {{ paginator.num_pages }}
+                    {% if this_page.has_next %}
+                        %li
+                            %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.next_page_number }}"} &rarr;
+                    {% else %}
+                        %li.disabled
+                            %a &rarr;
+                    {% endif %}
+        {% endif %}
 
-                {% if this_page.has_next %}
-                    %li
-                        %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.next_page_number }}"} &rarr;
-                {% else %}
+        - for resource in resources
+            %h3
+                %a{:href => '{% url tick_resource resource.id %}'}
+                    {{ resource }}
+            .info
+                {% for level in resource.levels.all %}{% if not forloop.first %}, {% endif %}{{ level.name }}{% endfor %} -
+                {% for content_area in resource.content_areas.all %}
+                    {% if not forloop.first %}, {% endif %}{{ content_area.name }}
+                {% endfor %}
+            %p {{ resource.description|striptags|truncatewords:50|safe }}
+            %hr
+        
+        {% if paginator.count > 1 %}
+            .pagination
+                %ul
+                    {% if this_page.has_previous %}
+                        %li
+                            %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.previous_page_number }}"} &larr;
+                    {% else %}
+                        %li.disabled
+                            %a &larr;
+                    {% endif %}
+
                     %li.disabled
-                        %a &rarr;
-                {% endif %}
-    {% endif %}
+                        %a Page {{ page }} of {{ paginator.num_pages }}
 
-    - for resource in resources
-        %h3
-            %a{:href => '{% url tick_resource resource.id %}'}
-                {{ resource }}
-        %p {{ resource.description|striptags|truncatewords:50|safe }}
-        %hr
-    
-    {% if paginator.count > 1 %}
-        .pagination
-            %ul
-                {% if this_page.has_previous %}
-                    %li
-                        %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.previous_page_number }}"} &larr;
-                {% else %}
-                    %li.disabled
-                        %a &larr;
-                {% endif %}
-
-                %li.disabled
-                    %a Page {{ page }} of {{ paginator.num_pages }}
-
-                {% if this_page.has_next %}
-                    %li
-                        %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.next_page_number }}"} &rarr;
-                {% else %}
-                    %li.disabled
-                        %a &rarr;
-                {% endif %}
-    {% endif %}
+                    {% if this_page.has_next %}
+                        %li
+                            %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.next_page_number }}"} &rarr;
+                    {% else %}
+                        %li.disabled
+                            %a &rarr;
+                    {% endif %}
+        {% endif %}
 
 {% endblock %}
