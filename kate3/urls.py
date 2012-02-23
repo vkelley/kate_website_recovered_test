@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tick/', include('tick.urls')),
+    url(r'^robots\.txt', 'pages.views.robot'),
 )
 
 if settings.DEBUG:
