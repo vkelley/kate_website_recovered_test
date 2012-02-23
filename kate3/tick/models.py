@@ -566,7 +566,7 @@ class Resource(models.Model):
                 else:
                     log = Entry.objects.log(self)
                 logged = True
-                if not resource.published:
+                if not resource.user.is_staff and not resource.published:
                     to_address = resource.user.email
                     from_address = settings.DEFAULT_FROM_EMAIL
                     subject = 'Dear TICK Contributor'
