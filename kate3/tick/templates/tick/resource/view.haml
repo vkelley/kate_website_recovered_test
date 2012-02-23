@@ -3,9 +3,9 @@
 {% block tick_content %}
 
 .row
-    .span5
+    .span6
         %h2 {{ resource.title }}
-        {{ resource.description|urlizetrunc:70|safe|linebreaks }}
+        {{ resource.description|safe|urlizetrunc:70|linebreaks }}
 
         .btn-group
             {% if resource.url %}
@@ -26,6 +26,12 @@
                 %a.btn{:href => "{% url tick_favorite_add resource.id %}"}
                     %i.icon-bookmark
                     Make Favorite
+            {% endif %}
+
+            {% if request.user.is_staff %}
+                %a.btn{:href => "{% url admin:tick_resource_change resource.id %}"} 
+                    %i.icon-edit
+                    Edit Resource
             {% endif %}
 
         {% if not resource.user.is_staff %}
@@ -64,7 +70,7 @@
             {{ resource.source|safe|urlizetrunc:"40"|linebreaks }}
         {% endif %}
 
-    .span2
+    .span2.offset1
         %h6 Focus
         %p {{ resource.focus.name }}
 
