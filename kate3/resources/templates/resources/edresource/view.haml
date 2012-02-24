@@ -1,0 +1,34 @@
+{% extends "resources/base_resources.haml" %}
+
+{% block resources_content %}
+
+.page-header
+	%h3
+		Educational Resources: {{ edresource_category }}
+	%small 
+		%a{:href => "{% url resources_index %}"} Back to resources
+
+
+.row
+	.span7
+		- for edresource in edresource_category.edresource_set.all
+			%h4 
+				%a{:href => "{{ edresource.link }}"}
+					{{ edresource }}
+			{{ edresource.description|safe }}
+
+			%hr
+
+	.span4.offset1
+		%h4 Other Educational Resources
+		%ul.nav.nav-tabs.nav-stacked
+			- for e in edresource_categories
+				{% if e.id != edresource_category.id %}
+				%li
+					%a{:href => "{{ e.get_absolute_url }}"}
+						{{ e }}
+				{% endif %}
+
+
+
+{% endblock %}

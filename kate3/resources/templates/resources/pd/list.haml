@@ -1,0 +1,9 @@
+{% extends "resources/pd/base_pdresources.haml" %}
+
+{% block pdresources_content %}
+%ul.nav.nav-tabs.nav-stacked
+	- for pdresource in pdresources
+		%li 
+			%a{:href => "{{ pdresource.get_absolute_url }}"} 
+				{{ pdresource }}
+{% endblock %}

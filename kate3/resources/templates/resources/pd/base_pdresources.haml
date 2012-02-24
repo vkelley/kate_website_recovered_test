@@ -1,0 +1,21 @@
+{% extends "resources/base_resources.haml" %}
+
+{% block resources_content %}
+	.row
+		.span3
+			%h3 PD Resources
+			%p PD Resources are articles created by the KATE staff for professional development purposes.
+			%p
+				%a{:href => "{% url resources_index %}"} Back to resources
+
+		.span7
+			{% block pdresources_content %}{% endblock %}
+
+		.span2
+			%h3 Other KATE Resources
+			%p
+				If you haven't found what you're looking for, check out
+				<a href="{% url tick_index %}">TICK</a> for thousands of
+				instructional resources geared toward technology.
+
+{% endblock %}

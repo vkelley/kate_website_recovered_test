@@ -1,0 +1,34 @@
+{% extends "resources/base_resources.haml" %}
+
+{% block resources_content %}
+
+.page-header
+	%h3
+		Training and Tutorials: {{ tutorial_category }}
+	%small 
+		%a{:href => "{% url resources_index %}"} Back to resources
+
+
+.row
+	.span7
+		- for tutorial in tutorial_category.tutorial_set.all
+			%h4 
+				%a{:href => "{{ tutorial.link }}"}
+					{{ tutorial }}
+			{{ tutorial.description|safe }}
+
+			%hr
+
+	.span4.offset1
+		%h4 Other Tutorials
+		%ul.nav.nav-tabs.nav-stacked
+			- for t in tutorial_categories
+				{% if t.id != tutorial_category.id %}
+				%li
+					%a{:href => "{{ t.get_absolute_url }}"}
+						{{ t }}
+				{% endif %}
+
+
+
+{% endblock %}

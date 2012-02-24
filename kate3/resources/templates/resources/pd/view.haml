@@ -1,0 +1,9 @@
+{% extends "resources/pd/base_pdresources.haml" %}
+
+{% block pdresources_content %}
+.well
+	.page-header
+		%h2 {{ pdresource.title }}
+		%small.help_text Created {{ pdresource.created }}
+	{{ pdresource.body|safe }}
+{% endblock %}

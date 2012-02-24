@@ -5,6 +5,13 @@ from resources.models import PdResource
 
 def view(request, id):
 	pdresource = get_object_or_404(PdResource, pk=id)
-	return render_to_response("resources/pdresource/view.html",
-							  {'pdresource': pdresource},
+	pdresources = PdResource.objects.filter(sub_page=False)
+	return render_to_response("resources/pd/view.haml",
+							  {'pdresource': pdresource, 'pdresources': pdresources},
+							  context_instance=RequestContext(request))
+
+def list(request):
+	pdresources = PdResource.objects.filter(sub_page=False)
+	return render_to_response("resources/pd/list.haml",
+							  {'pdresources': pdresources},
 							  context_instance=RequestContext(request))

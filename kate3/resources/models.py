@@ -2,9 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class PdResource(models.Model):
-    """
-    PD Resources
-    """
     title = models.CharField(max_length=100)
     body = models.TextField()
     user = models.ForeignKey(User)
@@ -16,7 +13,7 @@ class PdResource(models.Model):
         return self.title
         
     def get_absolute_url(self):
-        return ('kate-pdresource', (), {'object_id': self.id,})
+        return ('resources_pdresource', (), {'id': self.id,})
     get_absolute_url = models.permalink(get_absolute_url)
 
     class Meta:
@@ -30,7 +27,7 @@ class EdResourceCategory(models.Model):
         return self.name
         
     def get_absolute_url(self):
-        return ('kate-eduresource', (), {'id': self.id,})
+        return ('resources_edresource_category', (), {'id': self.id,})
     get_absolute_url = models.permalink(get_absolute_url)
 
 class EdResource(models.Model):
@@ -56,7 +53,7 @@ class TutorialCategory(models.Model):
         return self.name
         
     def get_absolute_url(self):
-        return ('resources_tutorial', (), {'object_id': self.id,})
+        return ('resources_tutorial_category', (), {'id': self.id,})
     get_absolute_url = models.permalink(get_absolute_url)
 
     class Meta:
