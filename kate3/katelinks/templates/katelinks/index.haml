@@ -15,13 +15,13 @@
             - for category in math.category.all
                 {% include "katelinks/_category_item.haml" %}
 
-    .span5
+    .span4
         %h4 {{ practical }}
         %ul.nav.nav-tabs.nav-stacked
             - for category in practical.category.all
                 {% include "katelinks/_category_item.haml" %}
 
-    .span2
+    .span3
         %h4 {{ reading }}
         %ul.nav.nav-tabs.nav-stacked
             - for category in reading.category.all
@@ -46,13 +46,13 @@
             - for category in writing.category.all
                 {% include "katelinks/_category_item.haml" %}
 
-    .span3
+    .span2
         %h4 {{ web }}
         %ul.nav.nav-tabs.nav-stacked
             - for category in web.category.all
                 {% include "katelinks/_category_item.haml" %}
 
-    .span2
+    .span3
         %h4 {{ other }}
         %ul.nav.nav-tabs.nav-stacked
             - for category in other.category.all
