@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
-from django.views.generic.list_detail import RequestContext
+from django.template import RequestContext
 
 from tick.models import *
 from tick.forms.search import FullSearchForm

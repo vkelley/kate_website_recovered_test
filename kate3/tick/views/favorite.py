@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
-from django.views.generic.list_detail import RequestContext
+from django.template import RequestContext
 
 from tick.models import Favorite, Resource
 from tick.forms.favorite import AddFavoriteForm, EditFavoriteForm

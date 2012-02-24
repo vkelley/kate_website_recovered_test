@@ -1,7 +1,7 @@
 import locale
 
 from django.shortcuts import render_to_response
-from django.views.generic.list_detail import RequestContext
+from django.template import RequestContext
 
 from tick.forms.search import FullSearchForm
 from tick.models import Announcement, Notice, Resource

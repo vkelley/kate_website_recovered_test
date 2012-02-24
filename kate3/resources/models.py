@@ -4,9 +4,6 @@ from django.db import models
 class PdResource(models.Model):
     """
     PD Resources
-
-    # Create a resource
-    >>> pd = PdResource.objects.create(title="Hey", body="Test", user=User.objects.create(username='test', email='test@test.com'))
     """
     title = models.CharField(max_length=100)
     body = models.TextField()
@@ -50,4 +47,33 @@ class EdResource(models.Model):
 
     class Meta:
         verbose_name = "Educational Resource"
+        ordering = ['title',]
+
+class TutorialCategory(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.name
+        
+    def get_absolute_url(self):
+        return ('resources_tutorial', (), {'object_id': self.id,})
+    get_absolute_url = models.permalink(get_absolute_url)
+
+    class Meta:
+        verbose_name_plural = "Tutorial Categories"
+        ordering = ['name',]
+
+class Tutorial(models.Model):
+    category = models.ForeignKey(TutorialCategory)
+    title = models.CharField(max_length=200)
+    link = models.URLField()
+    description = models.TextField()
+
+    def __unicode__(self):
+        return self.title
+        
+    def get_absolute_url(self):
+        return self.link
+
+    class Meta:
         ordering = ['title',]
