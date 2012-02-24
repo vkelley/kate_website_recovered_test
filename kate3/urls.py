@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 
     url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^links/', include('katelinks.urls')),
     url(r'^resources/', include('resources.urls')),
     url(r'^tick/', include('tick.urls')),
 

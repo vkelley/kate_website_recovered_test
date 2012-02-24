@@ -1,0 +1,5 @@
+{% if category.link_set.all %}
+	%li
+		%a{:href => "{% url katelinks_category_view category.id %}"}
+			{{ category.name }}
+{% endif %}

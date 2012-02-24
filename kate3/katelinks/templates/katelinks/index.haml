@@ -1,0 +1,61 @@
+{% extends "katelinks/base_katelinks.haml" %}
+
+{% block katelinks_content %}
+
+.row
+    .span3
+        %h4 {{ art }}
+        %ul.nav.nav-tabs.nav-stacked
+            - for category in art.category.all
+                {% include "katelinks/_category_item.haml" %}
+
+    .span2
+        %h4 {{ math }}
+        %ul.nav.nav-tabs.nav-stacked
+            - for category in math.category.all
+                {% include "katelinks/_category_item.haml" %}
+
+    .span5
+        %h4 {{ practical }}
+        %ul.nav.nav-tabs.nav-stacked
+            - for category in practical.category.all
+                {% include "katelinks/_category_item.haml" %}
+
+    .span2
+        %h4 {{ reading }}
+        %ul.nav.nav-tabs.nav-stacked
+            - for category in reading.category.all
+                {% include "katelinks/_category_item.haml" %}
+
+.row
+    .span3
+        %h4 {{ science }}
+        %ul.nav.nav-tabs.nav-stacked
+            - for category in science.category.all
+                {% include "katelinks/_category_item.haml" %}
+
+    .span2
+        %h4 {{ social }}
+        %ul.nav.nav-tabs.nav-stacked
+            - for category in social.category.all
+                {% include "katelinks/_category_item.haml" %}
+
+    .span2
+        %h4 {{ writing }}
+        %ul.nav.nav-tabs.nav-stacked
+            - for category in writing.category.all
+                {% include "katelinks/_category_item.haml" %}
+
+    .span3
+        %h4 {{ web }}
+        %ul.nav.nav-tabs.nav-stacked
+            - for category in web.category.all
+                {% include "katelinks/_category_item.haml" %}
+
+    .span2
+        %h4 {{ other }}
+        %ul.nav.nav-tabs.nav-stacked
+            - for category in other.category.all
+                {% include "katelinks/_category_item.haml" %}
+
+{% endblock %}
