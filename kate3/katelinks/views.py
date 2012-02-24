@@ -35,6 +35,7 @@ def view(request, category_id=None, level_id=None):
         'links': links,
         'category': category,
         'level': level,
+        'levels': Level.objects.all(),
     }
 
     return render_to_response('katelinks/view.haml',

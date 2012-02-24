@@ -1,0 +1,39 @@
+{% extends "katelinks/base_katelinks.haml" %}
+
+{% block katelinks_content %}
+
+.page-header
+    %h3 
+        Category: {{ category.name }}
+        {% if level %}
+            %small {{ level }}
+        {% endif %}
+    .help_text
+        %a{:href => "{% url katelinks_index %}"} Back to Links
+
+.row
+    .span8
+        - for link in links
+            %h4
+                %a{:href => "{{ link.url }}"}
+                    {{ link }}
+            %p.help_text {{ link.url }}
+            %p {{ link.description }}
+
+            %hr 
+
+    .span3.offset1
+        %h4 Filter by Level
+        %ul.nav.nav-tabs.nav-stacked
+            %li
+                %a{:href => "{% url katelinks_category_view category.id %}"} All Levels
+            - for l in levels   
+                %li
+                    %a{:href => "{% url katelinks_category_level_view category.id l.id %}"}
+                        {% if l.id = level.id %}
+                            %strong {{ l }}
+                        {% else %}
+                            {{ l }}
+                        {% endif %}
+
+{% endblock %}
