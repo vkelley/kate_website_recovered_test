@@ -10,6 +10,10 @@ urlpatterns = patterns('',
         'katelinks.views.view',
         name='katelinks_category_level_view'),
 
+	url(r'search/$',
+		'katelinks.views.search',
+		name='katelinks_search'),
+
 	url(r'^$',
         'katelinks.views.index',
         name='katelinks_index'),
