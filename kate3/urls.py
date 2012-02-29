@@ -10,6 +10,11 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
+    # Pages
+    url(r'^about/$', 'pages.views.about', name='pages_about'),
+    url(r'^contact/$', 'pages.views.contact', name='pages_contact'),
+    url(r'^tis/$', 'pages.views.tis', name='pages_tis'),
+
     url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^links/', include('katelinks.urls')),
