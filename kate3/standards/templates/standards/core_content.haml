@@ -1,0 +1,25 @@
+{% extends "standards/base_standards.haml" %}
+
+{% block standards_content %}
+
+.page-header
+    %h2 Core Content
+
+.row
+    .span7
+        - for core_content in core_contents
+            %h3 {{ core_content.code }}
+            %p {{ core_content.description|safe }}
+            %hr
+
+    .span4.offset1
+    	%ul.nav.nav-tabs.nav-stacked
+            %li <a href="{% url standards_corecontent "AH" %}">Arts &amp; Humanities</a>
+            %li <a href="{% url standards_corecontent "MA" %}">Mathematics</a>
+            %li <a href="{% url standards_corecontent "PL" %}/">Practical Living/Vocational Studies</a>
+            %li <a href="{% url standards_corecontent "RE" %}">Reading</a>
+            %li <a href="{% url standards_corecontent "SC" %}">Science</a>
+            %li <a href="{% url standards_corecontent "SS" %}">Social Studies</a>
+            %li <a href="{% url standards_corecontent "WR" %}">Writing</a>
+
+{% endblock %}
