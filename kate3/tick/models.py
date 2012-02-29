@@ -516,7 +516,7 @@ class Resource(models.Model):
         return row
 
     def get_absolute_url(self):
-        return ('tick-resource', (), {'object_id': self.id,})
+        return ('tick_resource', (), {'id': self.id,})
     get_absolute_url = permalink(get_absolute_url)
     
     def get_full_url(self):
