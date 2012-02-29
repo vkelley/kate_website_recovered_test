@@ -8,7 +8,7 @@ def contact(request):
 	return render_to_response('pages/contact.haml',
 							  context_instance=RequestContext(request))
 
-def tis_websites(request):
+def tis(request):
 	return render_to_response('pages/tis.haml',
 							  context_instance=RequestContext(request))
 
