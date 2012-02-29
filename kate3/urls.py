@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^links/', include('katelinks.urls')),
     url(r'^resources/', include('resources.urls')),
+    url(r'^standards/', include('standards.urls')),
     url(r'^tick/', include('tick.urls')),
 
     url(r'^robots\.txt', 'pages.views.robot'),

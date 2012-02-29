@@ -11,11 +11,17 @@ CORE_CONTENT_LIST = {
     'WR': {'id': 7, 'title': 'Writing'},
 }
 
+def index(request):
+    return render_to_response('standards/index.haml',
+                              context_instance=RequestContext(request))
+
 def core_content(request, subject):
-	core_contents = CoreContent.objects.filter(subject__exact=CORE_CONTENT_LIST[subject]['id']).order_by('level','bigidea','subcategory','catpoint')
+    core_contents = CoreContent.objects.filter(subject__exact=CORE_CONTENT_LIST[subject]['id']).order_by('level','bigidea','subcategory','catpoint')
+    
     return render_to_response('kate/core_content_subject.html',
-    						  {'core_contents': core_contents, 
-    						   'title': CORE_CONTENT_LIST[subject]['title']})
+                              {'core_contents': core_contents, 
+                               'title': CORE_CONTENT_LIST[subject]['title']},
+                              context_instance=RequestContext(request))
 
 
 
