@@ -1,1 +1,7 @@
-# Create your views here.
+
+
+def index(request):
+    pass
+
+def view(request):
+    pass
