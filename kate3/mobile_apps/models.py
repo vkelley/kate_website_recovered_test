@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.contrib.auth.models import User
 from django.db import models
 
 from core.models import ContentArea, Level
@@ -18,6 +19,9 @@ class App(models.Model):
     link = models.URLField(max_length=200, verify_exists=True)
     levels = models.ManyToManyField(Level, blank=True, null=True, related_name='levels')
     content_areas = models.ManyToManyField(Level, blank=True, null=True, related_name='content_areas')
+
+    user = models.ForeignKey(User, blank=True, null=True)
+    published = models.BooleanField()
 
     created_at = models.DateTimeField(blank=True, null=True)
 
