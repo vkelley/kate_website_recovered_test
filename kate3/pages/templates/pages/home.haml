@@ -5,6 +5,9 @@
 .hero-unit
     %h1 Kentucky Academy of Techology Education
     %p We collect the most innovative and successful technology practices in K–12 education and make them available to the teachers and students of Kentucky &mdash; the United States &mdash; and the world.
+    %p
+        %a.btn.btn-primary.btn-large{:href => "{% url pages_about %}"}
+            Learn More
 
 .row
     .span4
@@ -40,7 +43,7 @@
             %hr
 
     .span3
-        %h4 TICK News
+        %h2 TICK News
         %p {{ tick_news }}
         
 
