@@ -1,0 +1,17 @@
+{% extends "mobile_apps/base_mobile_apps.haml" %}
+
+{% block mobile_apps_content %}
+
+.row
+    .span5
+        %h3 
+            {{ app }}
+            %small {{ app.content_areas.all|join:", " }}
+
+        {% include "mobile_apps/_app.haml" %}
+
+        %h4
+            %a{:href => "{% url mobile_apps_index %}"}
+               &larr; Back to all mobile apps
+
+{% endblock %}

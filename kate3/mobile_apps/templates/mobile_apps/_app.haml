@@ -1,0 +1,15 @@
+- load money
+
+%p.help_text {{ app.levels.all|join:", " }}
+
+%p {{ app.description }}
+
+%p
+    - if app.cost == 0.00
+        %em Cost: Free
+    - else
+        %em Cost: {{ app.cost|make_money }}
+
+- if app.link
+    %p
+        %a{:href => "{{ app.link }}"} Visit App Page

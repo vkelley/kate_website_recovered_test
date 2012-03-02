@@ -17,8 +17,8 @@ class App(models.Model):
     type = models.ForeignKey(Type)
     cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     link = models.URLField(max_length=200, verify_exists=True)
-    levels = models.ManyToManyField(Level, blank=True, null=True, related_name='levels')
-    content_areas = models.ManyToManyField(Level, blank=True, null=True, related_name='content_areas')
+    levels = models.ManyToManyField(Level, blank=True, null=True)
+    content_areas = models.ManyToManyField(ContentArea, blank=True, null=True)
 
     user = models.ForeignKey(User, blank=True, null=True)
     published = models.BooleanField()

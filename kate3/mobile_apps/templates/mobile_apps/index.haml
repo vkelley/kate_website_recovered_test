@@ -1,0 +1,37 @@
+- extends "mobile_apps/base_mobile_apps.haml"
+
+- block mobile_apps_content
+    .row
+        .span7
+            - for app in apps
+                %h3 
+                    %a{:href => "{% url mobile_apps_view app.id %}"}
+                        {{ app }}
+                    %small {{ app.content_areas.all|join:", " }}
+                {% include "mobile_apps/_app.haml" %}
+                %hr
+
+        .span4.offset1
+            %h3 About
+            %p These mobile apps are apps used by teachers for instruction. Each app has been put under its appropriate levels and content areas
+
+            %h4 Types
+            %ul.nav.nav-tabs.nav-stacked
+                -for type in types
+                    %li
+                        %a{:href => "#"}
+                            {{ type }}
+
+            %h4 Levels
+            %ul.nav.nav-tabs.nav-stacked
+                - for level in levels
+                    %li
+                        %a{:href => "#"}
+                            {{ level }}
+
+            %h4 Content Areas
+            %ul.nav.nav-tabs.nav-stacked
+                - for content_area in content_areas
+                    %li
+                        %a{:href => "#"}
+                            {{ content_area }}
