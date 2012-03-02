@@ -2,36 +2,51 @@
 
 - block mobile_apps_content
     .row
-        .span7
-            - for app in apps
-                %h3 
-                    %a{:href => "{% url mobile_apps_view app.id %}"}
-                        {{ app }}
-                    %small {{ app.content_areas.all|join:", " }}
-                {% include "mobile_apps/_app.haml" %}
-                %hr
+        .span6
+            - if apps
+                - for app in apps
+                    %h3 
+                        %a{:href => "{% url mobile_apps_view app.id %}"}
+                            {{ app }}
+                        %small {{ app.content_areas.all|join:", " }}
+                    {% include "mobile_apps/_app.haml" %}
+                    %hr
+            - else
+                %h3 No apps
+                %p There are no apps available for this search
 
-        .span4.offset1
+        .span6
             %h3 About
-            %p These mobile apps are apps used by teachers for instruction. Each app has been put under its appropriate levels and content areas
+            %p These mobile apps are apps used by teachers around the state for instruction and education. Each app has been put under its appropriate levels and content areas, and can be filtered using the links below.
 
-            %h4 Types
-            %ul.nav.nav-tabs.nav-stacked
-                -for type in types
-                    %li
-                        %a{:href => "#"}
-                            {{ type }}
+            - if filtered
+                %p
+                    %a.btn{:href => "{% url mobile_apps_index %}"}
+                        %i.icon-th-list
+                        List all apps
 
-            %h4 Levels
-            %ul.nav.nav-tabs.nav-stacked
-                - for level in levels
-                    %li
-                        %a{:href => "#"}
-                            {{ level }}
+            .row
+                .span3
+                    %h4 Types
+                    %ul.nav.nav-tabs.nav-stacked
+                        -for type in types
+                            %li
+                                %a{:href => "{% url mobile_apps_index %}?type={{ type.id }}"}
+                                    {{ type }}
 
-            %h4 Content Areas
-            %ul.nav.nav-tabs.nav-stacked
-                - for content_area in content_areas
-                    %li
-                        %a{:href => "#"}
-                            {{ content_area }}
+                    %h4 Content Areas
+                    %ul.nav.nav-tabs.nav-stacked
+                        - for content_area in content_areas
+                            %li
+                                %a{:href => "{% url mobile_apps_index %}?content_areas={{ content_area.id }}"}
+                                    {{ content_area }}
+
+                .span3
+                    %h4 Levels
+                    %ul.nav.nav-tabs.nav-stacked
+                        - for level in levels
+                            %li
+                                %a{:href => "{% url mobile_apps_index %}?levels={{ level.id }}"}
+                                    {{ level }}
+
+            

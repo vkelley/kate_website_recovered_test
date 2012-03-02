@@ -10,8 +10,8 @@
 
         {% include "mobile_apps/_app.haml" %}
 
-        %h4
-            %a{:href => "{% url mobile_apps_index %}"}
-               &larr; Back to all mobile apps
+        %a.btn{:href => "{% url mobile_apps_index %}"}
+           %i.icon-th-list
+           List all mobile apps
 
 {% endblock %}

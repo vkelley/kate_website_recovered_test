@@ -6,22 +6,32 @@ from mobile_apps.models import App, Type
 
 def index(request):
     apps = App.objects.filter(published=True)
+
+    filtered = False
+
+    if request.GET.has_key('type'):
+        apps = apps.filter(type__id=request.GET['type'])
+        filtered = True
+
+    if request.GET.has_key('levels'):
+        apps = apps.filter(levels__id=request.GET['levels'])
+        filtered = True
+
+    if request.GET.has_key('content_areas'):
+        apps = apps.filter(content_areas__id=request.GET['content_areas'])
+        filtered = True
+
     levels = Level.objects.all()
     content_areas = ContentArea.objects.all()
     types = Type.objects.all()
     return render_to_response('mobile_apps/index.haml',
                               {'apps': apps, 'levels': levels, 
                                'content_areas': content_areas,
-                               'types': types},
+                               'types': types, 'filtered': filtered},
                               context_instance=RequestContext(request))
 
 def view(request, id):
     app = get_object_or_404(App, pk=id, published=True)
-    levels = Level.objects.all()
-    content_areas = ContentArea.objects.all()
-    types = Type.objects.all()
     return render_to_response('mobile_apps/view.haml',
-                              {'app': app, 'levels': levels, 
-                               'content_areas': content_areas,
-                               'types': types},
+                              {'app': app},
                               context_instance=RequestContext(request))

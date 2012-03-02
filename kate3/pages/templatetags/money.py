@@ -9,8 +9,8 @@ def make_money(value):
     if value == '' or value == None:
         value = '0.00'
     m = moneyfmt(Decimal(str(value)))
-    if m == '$.00':
-        m = '$0.00'
+    if m.split('.')[0] == '$':
+        m = '$0.%s' % m.split('.')[1]
     return m
     
 def spellout(n):
