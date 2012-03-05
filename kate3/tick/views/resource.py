@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
+from core.models import ContentArea, Level
 from tick.models import *
 from tick.forms.search import FullSearchForm
 from tick.forms.resource import ResourceEditForm
@@ -18,6 +19,8 @@ def search(request):
         resources = Resource.public_objects.advanced_search(**form.cleaned_data)
     else:
         return HttpResponseRedirect(reverse('tick_index'))
+
+    keyword = form.cleaned_data['keyword']
     
     paginator = Paginator(resources, 15)
     page = int(request.GET.get('page', 1))
@@ -27,7 +30,12 @@ def search(request):
         'this_page': paginator.page(page),
         'paginator': paginator,
         'page': page,
-        'url': get_url(request)
+        'url': get_url(request),
+        'keyword': keyword,
+        'level': form.cleaned_data['levels'],
+        'content_area': form.cleaned_data['content_areas'],
+        'levels': Level.objects.all(),
+        'content_areas': ContentArea.objects.all(),
     }
 
     return render_to_response('tick/resource/list.haml',
