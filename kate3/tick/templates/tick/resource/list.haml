@@ -90,7 +90,7 @@
                         %li
                             %a{:href => "{% url tick_search %}?keyword={{ keyword }}&amp;content_areas={{ content_area.id }}"}
                                 - if content_area == form_content_area
-                                    <strong>{{ content_area }}</strong>
+                                    %strong {{ content_area }}
                                 - else
                                     {{ content_area }}
 
@@ -100,7 +100,7 @@
                         %li
                             %a{:href => "{% url tick_search %}?keyword={{ keyword }}&amp;levels={{ level.id }}"}
                                 - if level == form_level
-                                    <strong>{{ level }}</strong>
+                                    %strong {{ level }}
                                 - else
                                     {{ level }}
 
