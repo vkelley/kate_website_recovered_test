@@ -1,5 +1,11 @@
 from django.conf.urls.defaults import patterns, include, url
 
+from tick.feeds import RecentlyPublishedFeed
+
+feeds = {
+    'tick_recent': RecentlyPublishedFeed,
+}
+
 urlpatterns = patterns('',
 
     # Favorite Views
@@ -36,6 +42,11 @@ urlpatterns = patterns('',
         'tick.views.resource.view',
         name='tick_resource'),
 
+    # Feeds
+    url(r'^feeds/(?P<url>.*)/$',
+        'django.contrib.syndication.views.feed',
+        {'feed_dict': feeds},
+        name='tick_feed'),
     
     # Edit page
     #url(r'^resource/(?P<id>\d+)/edit/$',

@@ -50,6 +50,9 @@
     .span3
         %h2 TICK News
         %p {{ tick_news }}
+        %p
+            %span.label.label-warning RSS
+            <a href="{% url tick_feed "tick_recent" %}">Recently on TICK</a>
         
 
 {% endblock %}
