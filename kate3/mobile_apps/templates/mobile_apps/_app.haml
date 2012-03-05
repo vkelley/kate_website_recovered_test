@@ -5,7 +5,7 @@
 %p {{ app.description }}
 
 %p
-    - if app.cost == 0.00
+    - if app.cost == 0.00 or not app.cost
         %em Cost: Free
     - else
         %em Cost: {{ app.cost|make_money }}

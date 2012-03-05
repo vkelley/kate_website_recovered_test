@@ -17,8 +17,7 @@ def search(request):
     if form.is_valid():
         resources = Resource.public_objects.advanced_search(**form.cleaned_data)
     else:
-        print form
-        return HttpResponse('hey')
+        return HttpResponseRedirect(reverse('tick_index'))
     
     paginator = Paginator(resources, 15)
     page = int(request.GET.get('page', 1))
@@ -56,24 +55,6 @@ def submitted(request):
 
 @login_required
 def edit(request, id):
-    """
-    Edit a resource, only if it belongs to the person logged in and it has not
-    been published yet.  We don't want to allow them to edit resources that we
-    have already made live.
-    
-    **Context:**
-    
-    form
-        This is a ``ResourceEditForm`` that contains all three steps of the
-        resource submission process.
-        
-    resource
-        The object of the ``Resource`` we are editing.
-        
-    **Template:**
-    
-    tick/edit_resource.html
-    """
     # Resource must exist and not be published
     try:
         resource = Resource.objects.get(pk=id, user=request.user, published=False)
