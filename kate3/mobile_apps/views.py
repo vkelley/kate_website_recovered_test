@@ -9,6 +9,13 @@ def index(request):
 
     filtered = False
 
+    if request.GET.has_key('free'):
+        if request.GET['free'] == "1":
+            apps = apps.filter(cost='0.00')
+        elif request.GET['free'] == "0":
+            apps = apps.exclude(cost='0.00')
+        filtered = True
+
     if request.GET.has_key('type'):
         apps = apps.filter(type__id=request.GET['type'])
         filtered = True

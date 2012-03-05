@@ -27,6 +27,13 @@
 
             .row
                 .span3
+                    %h4 Free or Paid
+                    %ul.nav.nav-tabs.nav-stacked
+                        %li
+                            %a{:href => "{% url mobile_apps_index %}?free=1"} Free
+                        %li
+                            %a{:href => "{% url mobile_apps_index %}?free=0"} Paid
+
                     %h4 Types
                     %ul.nav.nav-tabs.nav-stacked
                         -for type in types

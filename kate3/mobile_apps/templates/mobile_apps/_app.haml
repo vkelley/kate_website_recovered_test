@@ -1,14 +1,13 @@
 - load money
 
-%p.help_text {{ app.levels.all|join:", " }}
-
-%p {{ app.description }}
-
 %p
     - if app.cost == 0.00 or not app.cost
-        %em Cost: Free
+        %span.label.label-info Cost: Free
     - else
-        %em Cost: {{ app.cost|make_money }}
+        %span.label.label-success Cost: {{ app.cost|make_money }}
+    %span.help_text {{ app.levels.all|join:", " }}
+
+%p {{ app.description }}
 
 - if app.link
     %p
