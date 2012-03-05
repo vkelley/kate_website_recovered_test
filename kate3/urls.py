@@ -16,6 +16,9 @@ urlpatterns = patterns('',
     url(r'^tis/$', 'pages.views.tis', name='pages_tis'),
     url(r'^$', 'pages.views.home', name='home'),
 
+    # Don't want to show account listing yet
+    url('^accounts/$', 'django.views.generic.simple.redirect_to', {'url': '/'}),
+    
     url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^links/', include('katelinks.urls')),
