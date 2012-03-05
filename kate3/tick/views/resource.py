@@ -32,8 +32,8 @@ def search(request):
         'page': page,
         'url': get_url(request),
         'keyword': keyword,
-        'level': form.cleaned_data['levels'],
-        'content_area': form.cleaned_data['content_areas'],
+        'form_level': form.cleaned_data['levels'],
+        'form_content_area': form.cleaned_data['content_areas'],
         'levels': Level.objects.all(),
         'content_areas': ContentArea.objects.all(),
     }
