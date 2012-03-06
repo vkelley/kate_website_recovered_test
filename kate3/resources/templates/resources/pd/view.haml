@@ -1,5 +1,11 @@
 {% extends "resources/pd/base_pdresources.haml" %}
 
+{% load title %}
+
+- block title
+    {{ pdresource.title }} - 
+    - title "Resources"
+
 {% block pdresources_content %}
 .well
 	.page-header

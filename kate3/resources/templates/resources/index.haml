@@ -1,5 +1,10 @@
 {% extends "resources/base_resources.haml" %}
 
+{% load title %}
+
+- block title
+	- title "Resources"
+
 {% block resources_content %}
 	.row
 		.span6

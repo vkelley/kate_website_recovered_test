@@ -1,5 +1,11 @@
 {% extends "resources/base_resources.haml" %}
 
+- load title
+
+- block title
+	{{ tutorial_category }} - 
+	- title "Resources"
+
 {% block resources_content %}
 
 .page-header
