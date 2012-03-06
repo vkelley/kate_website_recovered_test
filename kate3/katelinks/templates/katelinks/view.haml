@@ -1,5 +1,11 @@
 {% extends "katelinks/base_katelinks.haml" %}
 
+- load title
+
+- block title
+    {{ category }} -
+    - title "Links"
+
 {% block katelinks_content %}
 
 .page-header
