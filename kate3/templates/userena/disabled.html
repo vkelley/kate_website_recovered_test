@@ -2,8 +2,16 @@
 {% load i18n %}
 
 {% block title %}{% trans "Disabled account" %}{% endblock %}
-{% block content_title %}<h2>{% trans "Your account has been disabled" %}</h2>{% endblock %}
 {% block content %}
-<p>{% trans "It seems your account has been disabled." %}</p>
-<p>{% trans "If you feel that injustice has been done to you, feel free to contact the administrators to find out why" %}</p>
+<div class="row">
+    <div class="span12">
+        <div class="page-header">
+        <h2>{% trans "Your account has been disabled" %}</h2>
+        </div>
+        <p>{% trans "It seems your account has been disabled." %} We have been cleaning up the accounts
+            and yours may have been disabled on accident.</p>
+        <p>If you feel this is incorrect, please contact the Web Resources Coordinator by visiting the 
+            <a href="{% url pages_contact %}">contact page</a>.</p>
+    </div>
+</div>
 {% endblock %} 
