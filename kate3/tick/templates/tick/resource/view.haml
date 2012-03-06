@@ -42,7 +42,8 @@
             %br
             %p
                 %small
-                    Contributed by {{ resource.user.username }}
+                    Contributed by 
+                    <a href="{% url userena_profile_detail resource.user.username %}">{{ resource.user.username }}</a>
         {% endif %}
 
         {% if resource.content_standards.all %}

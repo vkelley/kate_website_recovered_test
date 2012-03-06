@@ -10,7 +10,7 @@
   <div class="row">
     <div class="span2">
       <div id="details">
-        <img src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />
+        {% comment %}<img src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />{% endcomment %}
         {% if profile.user.get_full_name %}
         <p><strong>{% trans "Name" %}</strong><br /> {{ profile.user.get_full_name }}</p>
         {% endif %}
