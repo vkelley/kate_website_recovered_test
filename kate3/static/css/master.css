@@ -44,6 +44,9 @@ table td.status {
   .sub-nav-well {
     display: none;
   }
+  .hero-unit h1 {
+    font-size: 40px !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -52,5 +55,8 @@ table td.status {
   }
   .sub-nav-well {
     display: none;
+  }
+  .hero-unit h1 {
+    font-size: 40px !important;
   }
 }
