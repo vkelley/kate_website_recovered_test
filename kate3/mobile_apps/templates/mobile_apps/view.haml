@@ -1,17 +1,20 @@
-{% extends "mobile_apps/base_mobile_apps.haml" %}
+- extends "mobile_apps/base_mobile_apps.haml"
 
-{% block mobile_apps_content %}
+- load title
 
-.row
-    .span5
-        %h3 
-            {{ app }}
-            %small {{ app.content_areas.all|join:", " }}
+- block title
+    {{ app }} -
+    - title "Mobile Apps"
 
-        {% include "mobile_apps/_app.haml" %}
+- block mobile_apps_content
+    .row
+        .span5
+            %h3 
+                {{ app }}
+                %small {{ app.content_areas.all|join:", " }}
 
-        %a.btn{:href => "{% url mobile_apps_index %}"}
-           %i.icon-th-list
-           List all mobile apps
+            {% include "mobile_apps/_app.haml" %}
 
-{% endblock %}
+            %a.btn{:href => "{% url mobile_apps_index %}"}
+               %i.icon-th-list
+               List all mobile apps

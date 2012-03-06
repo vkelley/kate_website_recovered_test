@@ -1,5 +1,10 @@
 - extends "mobile_apps/base_mobile_apps.haml"
 
+- load title
+
+- block title
+    - title "Mobile Apps"
+
 - block mobile_apps_content
     .row
         .span6
