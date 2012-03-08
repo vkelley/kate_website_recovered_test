@@ -22,7 +22,7 @@ $(document).ready(function() {
   });
 
   $("#standards_select").hide();
-  $("select#id_content_areas").change(function() {
+  $("select#id_content_areas[multiple=multiple]").change(function() {
     $("#standards_select").show();
     $("select#id_content_standards").attr('disabled', true);
     $.get("/tick/core_content_ajax/", {content_area: String($(this).val()).split(',').join('_')},
