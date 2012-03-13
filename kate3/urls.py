@@ -1,6 +1,11 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
+from tastypie.api import Api
+from userena import views as userena_views
+
+from accounts.forms import EditFormExtra
+from tick.api import ResourceResource, TechnologyStandardResource
 
 from userena import views as userena_views
 
@@ -8,7 +13,12 @@ from accounts.forms import EditFormExtra
 
 admin.autodiscover()
 
+v1_api = Api(api_name='v1')
+v1_api.register(ResourceResource())
+v1_api.register(TechnologyStandardResource())
+
 urlpatterns = patterns('',
+    url(r'^api/', include(v1_api.urls)),
 
     # Pages
     url(r'^about/$', 'pages.views.about', name='pages_about'),
