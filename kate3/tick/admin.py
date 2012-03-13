@@ -5,22 +5,17 @@ from tick.models import *
 
 class CoreContentAdmin(admin.ModelAdmin):
     search_fields = ('code',)
-    
-class TechIndicatorAdmin(admin.ModelAdmin):
-    class Media:
-        js = ('kate/tick/js/admin/prototype.js', 'kate/tick/js/admin/pos_ind_form_ajax.js')
         
 class TechnologyStandardAdmin(admin.ModelAdmin):
     fieldsets = (
         ('General', {'fields': ('point', 'subpoint', 'description', 'category', 'name'),}),
     )
+    class Media:
+        js = ('/static/js/admin.js')
 
 class ProgramOfStudyAdmin(admin.ModelAdmin):
     search_fields = ('code',)
     list_filter = ('level', 'bigidea')
-    
-    class Media:
-        js = ('kate/tick/js/admin/prototype.js', 'kate/tick/js/admin/pos_ind_form_ajax.js')
 
 class ResourceAdminForm(forms.ModelForm):
     """
@@ -66,7 +61,7 @@ class ResourceAdmin(admin.ModelAdmin):
     save_on_top = True
     
     class Media:
-        js = ('/media/kate/tick/js/admin/prototype.js', '/media/kate/tick/js/admin/tick_form_ajax.js')
+        js = ('/static/js/admin.js',)
         
 class AnnouncementAdmin(admin.ModelAdmin):
     fieldsets = (
@@ -89,7 +84,7 @@ class CommonCoreStandardAdmin(admin.ModelAdmin):
     list_filter = ('grade', 'domain')
     
 admin.site.register(CoreContent, CoreContentAdmin)
-admin.site.register(TechIndicator, TechIndicatorAdmin)
+admin.site.register(TechIndicator)
 admin.site.register(TechnologyComponent)
 admin.site.register(TechnologySubComponent)
 admin.site.register(TechnologyStandard, TechnologyStandardAdmin)
