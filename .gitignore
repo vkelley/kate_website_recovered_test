@@ -1,4 +1,3 @@
 *.pyc
 settings_local.py
-.venv
 .DS_Store
