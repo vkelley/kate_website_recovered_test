@@ -139,7 +139,9 @@ INSTALLED_APPS = (
     'accounts',
     'pages',
     'standards',
-    'mobile_apps'
+    'mobile_apps',
+    'tastypie',
+    'gunicorn',
 )
 
 # A sample logging configuration. The only tangible logging
