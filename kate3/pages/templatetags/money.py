@@ -1,7 +1,7 @@
 from django import template
 
 from decimal import Decimal
-from rounding import moneyfmt
+from utils.rounding import moneyfmt
 
 register = template.Library()
 
