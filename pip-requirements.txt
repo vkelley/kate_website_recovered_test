@@ -8,6 +8,6 @@ gunicorn==0.14.1
 hamlpy==0.80.0
 mimeparse==0.1.3
 python-dateutil==2.0
-django-tastypie
+django-tastypie==0.9.11
 pytz==2012b
 wsgiref==0.1.2
