@@ -14,7 +14,7 @@ set_tech_standards = function(){
 
             $.each(data.objects, function(index, object) {
                 $('#tech_standards_table')
-                    .append("<tr><td width='6%'><strong>"+object.name+"</strong></td><td>"+object.description+"</td></tr>")
+                    .append("<tr><td nowrap='true'><strong>"+object.name+"</strong></td><td>"+object.description+"</td></tr>")
             });
         });
 }
