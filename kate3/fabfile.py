@@ -166,10 +166,25 @@ def collectstatic():
 
 @task
 @roles('app')
-def django_log(lines=30):
+def gunicorn_log(lines=30):
     """Tail the Django Log"""
-    log_file = "{env.root}/var/log/django.log".format(env=env)
-    run("tail -n{lines} {file}".format(lines=lines, file=log_file))
+    log_file = "/var/log/gunicorn/kate3.log"
+    sudo("tail -n{lines} {file}".format(lines=lines, file=log_file))
+
+@task
+@roles('app')
+def access_log(lines=30):
+    """Tail the Django Log"""
+    log_file = "/var/log/httpd/access_log"
+    sudo("tail -n{lines} {file}".format(lines=lines, file=log_file))
+
+@task
+@roles('app')
+def error_log(lines=30):
+    """Tail the Django Log"""
+    log_file = "/var/log/httpd/error_log"
+    sudo("tail -n{lines} {file}".format(lines=lines, file=log_file))
+
 
 @task
 @roles('app')
