@@ -1,0 +1,30 @@
+# Local settings template file
+# 1. Copy this file to the kate3 project directory
+# 2. Rename to settings_local.py
+# 3. Change settings for your environment
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',                      # Or path to database file if using sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
+SECRET_KEY = 'secret'
+
+MEDIA_URL = '/media/'
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+# Email settings
+EMAIL_TO = ['']
+DEFAULT_FROM_EMAIL = ''
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
