@@ -12,7 +12,7 @@ class BaseResourceResource(ModelResource):
     url = fields.CharField(readonly=True)
 
     def obj_get_list(self, request, *args, **kwargs):
-        resources = super(ResourceResource, self).obj_get_list(request, *args, **kwargs)
+        resources = super(BaseResourceResource, self).obj_get_list(request, *args, **kwargs)
         if request.GET.has_key('search'):
             return resources.advanced_search(keyword=request.GET['search'])
         return resources
