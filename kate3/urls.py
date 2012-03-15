@@ -5,7 +5,7 @@ from tastypie.api import Api
 from userena import views as userena_views
 
 from accounts.forms import EditFormExtra
-from tick.api import ResourceResource, TechnologyStandardResource
+from tick.api import *
 
 from userena import views as userena_views
 
@@ -14,6 +14,9 @@ from accounts.forms import EditFormExtra
 admin.autodiscover()
 
 v1_api = Api(api_name='v1')
+v1_api.register(CommonCoreResource())
+v1_api.register(ContentAreaResource())
+v1_api.register(LevelResource())
 v1_api.register(ResourceResource())
 v1_api.register(TechnologyStandardResource())
 
