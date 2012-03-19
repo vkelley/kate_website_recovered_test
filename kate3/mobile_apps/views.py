@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
@@ -40,6 +41,7 @@ def index(request):
                                'types': types, 'filtered': filtered},
                               context_instance=RequestContext(request))
 
+@login_required
 def submit(request):
     if request.method == 'POST':
         form = AppForm(request.POST)
