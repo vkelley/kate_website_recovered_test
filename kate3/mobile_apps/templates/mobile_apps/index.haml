@@ -22,7 +22,12 @@
 
         .span6
             %h3 About
+
             %p These mobile apps are apps used by teachers around the state for instruction and education. Each app has been put under its appropriate levels and content areas, and can be filtered using the links below.
+
+            %p
+                %a.btn.btn-success{:href => "{% url mobile_apps_submit %}"}
+                    Submit a mobile app
 
             - if filtered
                 %p

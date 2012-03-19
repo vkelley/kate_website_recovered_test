@@ -1,8 +1,11 @@
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
 from core.models import ContentArea, Level
 from mobile_apps.models import App, Type
+from mobile_apps.forms import AppForm
 
 def index(request):
     apps = App.objects.filter(published=True)
@@ -35,6 +38,19 @@ def index(request):
                               {'apps': apps, 'levels': levels, 
                                'content_areas': content_areas,
                                'types': types, 'filtered': filtered},
+                              context_instance=RequestContext(request))
+
+def submit(request):
+    if request.method == 'POST':
+        form = AppForm(request.POST)
+        if form.is_valid():
+            form.save(user=request.user)
+            request.user.message_set.create(message='Your app was submitted!')
+            return HttpResponseRedirect(reverse('mobile_apps_index'))
+    else:
+        form = AppForm()
+    return render_to_response('mobile_apps/submit.haml',
+                              {'form': form},
                               context_instance=RequestContext(request))
 
 def view(request, id):

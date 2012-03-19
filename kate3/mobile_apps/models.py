@@ -12,11 +12,11 @@ class Type(models.Model):
         return self.name
 
 class App(models.Model):
-    name = models.CharField(max_length=200, blank=True, null=True)
+    name = models.CharField(max_length=200)
     description = models.TextField()
-    type = models.ForeignKey(Type)
+    type = models.ForeignKey(Type, blank=True, null=True)
     cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    link = models.URLField(max_length=200, verify_exists=True)
+    link = models.URLField(max_length=200, verify_exists=True, blank=True, null=True)
     levels = models.ManyToManyField(Level, blank=True, null=True)
     content_areas = models.ManyToManyField(ContentArea, blank=True, null=True)
 

@@ -1,0 +1,62 @@
+- extends "mobile_apps/base_mobile_apps.haml"
+
+- load title
+
+- block title
+    - title "Mobile Apps" "Submit"
+
+- block mobile_apps_content
+    .row
+        .span3
+            .page-header
+                %h4 Mobile Apps
+            %p 
+                Have you found a mobile app that you think other teachers
+                would use? Is there an iPhone app that couldn't teach witout?
+                Have you fallen in love with your Android device and have
+                some of your favorite apps to show off? If so, submit
+                your apps here and we'll share them with other teachers
+                across the state.
+        .span6
+            .page-header
+                %h4 Submit a Mobile App
+            %form.form-horizontal{:method => "post", :action => "{% url mobile_apps_submit %}"}
+                {% csrf_token %}
+                %fieldset
+                    .control-group
+                        %label.control-label
+                            %strong {{ form.name.label }}
+                        .controls
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                .alert.alert-error {{ form.name.errors|join:", " }}
+                            {% endif %}
+                    .control-group
+                        %lable.control-label
+                            %strong {{ form.description.label }}
+                        .controls
+                            {{ form.description }}
+                            - if form.description.errors
+                                .alert.alert-error {{ form.description.errors|join:", " }}
+                    .control-group
+                        %lable.control-label {{ form.type.label }}
+                        .controls
+                            {{ form.type }}
+                            - if form.type.errors
+                                .alert.alert-error {{ form.type.errors|join:", " }}
+                    .control-group
+                        %lable.control-label {{ form.levels.label }}
+                        .controls
+                            {{ form.levels }}
+                            %p.help_block {{ form.levels.help_text }}
+                            - if form.levels.errors
+                                .alert.alert-error {{ form.levels.errors|join:", " }}
+                    .control-group
+                        %lable.control-label {{ form.content_areas.label }}
+                        .controls
+                            {{ form.content_areas }}
+                            %p.help_block {{ form.content_areas.help_text }}
+                            - if form.content_areas.errors
+                                .alert.alert-error {{ form.content_areas.errors|join:", " }}
+                    .form-actions
+                        %button.btn.btn-primary Submit App
