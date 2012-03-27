@@ -17,11 +17,17 @@ class Focus(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = 'Focuses'
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = 'Categories'
 
 class Title(models.Model):
     name = models.CharField(max_length=100)
@@ -29,9 +35,6 @@ class Title(models.Model):
 
     def __unicode__(self):
         return self.name
-
-    class Meta:
-        verbose_name = "Kate Link Title"
 
 class Link(models.Model):
     title = models.CharField(max_length=100)
@@ -50,5 +53,4 @@ class Link(models.Model):
         return self.url
 
     class Meta:
-        verbose_name = "Kate Link"
         ordering = ['title']
