@@ -1,5 +1,6 @@
 {% extends "tick/base_tick.haml" %}
 {% load title %}
+{% load get_query %}
 
 {% block title %}{% title "Search Results" %}{% endblock %}
 
@@ -26,7 +27,7 @@
                         %ul
                             {% if this_page.has_previous %}
                                 %li
-                                    %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.previous_page_number }}"} &larr;
+                                    %a{:href => "{% url tick_search %}?{% get_query get_request page this_page.previous_page_number %}"} &larr;
                             {% else %}
                                 %li.disabled
                                     %a &larr;
@@ -37,7 +38,7 @@
 
                             {% if this_page.has_next %}
                                 %li
-                                    %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.next_page_number }}"} &rarr;
+                                    %a{:href => "{% url tick_search %}?{% get_query get_request page this_page.next_page_number %}"} &rarr;
                             {% else %}
                                 %li.disabled
                                     %a &rarr;
@@ -65,7 +66,7 @@
                         %ul
                             {% if this_page.has_previous %}
                                 %li
-                                    %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.previous_page_number }}"} &larr;
+                                    %a{:href => "{% url tick_search %}?{% get_query get_request page this_page.previous_page_number %}"} &larr;
                             {% else %}
                                 %li.disabled
                                     %a &larr;
@@ -76,7 +77,7 @@
 
                             {% if this_page.has_next %}
                                 %li
-                                    %a{:href => "{% url tick_search %}?{{ url }}&amp;page={{ this_page.next_page_number }}"} &rarr;
+                                    %a{:href => "{% url tick_search %}?{% get_query get_request page this_page.next_page_number %}"} &rarr;
                             {% else %}
                                 %li.disabled
                                     %a &rarr;
@@ -86,9 +87,16 @@
             .span3
                 %h3 Subjects
                 %ul.nav.nav-tabs.nav-stacked
+                    %li
+                        <a href="{% url tick_search %}?{% get_query get_request content_areas "all" %}">
+                            - if not get_request.content_areas
+                                %strong All
+                            - else
+                                All
+                        </a>
                     - for content_area in content_areas
                         %li
-                            %a{:href => "{% url tick_search %}?keyword={{ keyword }}&amp;content_areas={{ content_area.id }}"}
+                            %a{:href => "{% url tick_search %}?{% get_query get_request content_areas content_area.id %}"}
                                 - if content_area == form_content_area
                                     %strong {{ content_area }}
                                 - else
@@ -96,9 +104,16 @@
 
                 %h3 Levels
                 %ul.nav.nav-tabs.nav-stacked
+                    %li
+                        <a href="{% url tick_search %}?{% get_query get_request levels "all" %}">
+                            - if not get_request.levels
+                                %strong All
+                            - else
+                                All
+                        </a>
                     - for level in levels
                         %li
-                            %a{:href => "{% url tick_search %}?keyword={{ keyword }}&amp;levels={{ level.id }}"}
+                            %a{:href => "{% url tick_search %}?{% get_query get_request levels level.id %}"}
                                 - if level == form_level
                                     %strong {{ level }}
                                 - else

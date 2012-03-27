@@ -13,8 +13,15 @@ from tick.forms.resource import ResourceEditForm
 from utils.get_url import get_url
 
 def search(request):
+    get_request = request.GET.copy()
+
+    for item, value in get_request.items():
+        if get_request[item] == "all":
+                del get_request[item]
+
     # See if the form is valid
-    form = FullSearchForm(request.GET)
+    form = FullSearchForm(get_request)
+
     if form.is_valid():
         resources = Resource.public_objects.advanced_search(**form.cleaned_data)
     else:
@@ -30,6 +37,7 @@ def search(request):
         'this_page': paginator.page(page),
         'paginator': paginator,
         'page': page,
+        'get_request': get_request,
         'url': get_url(request),
         'keyword': keyword,
         'form_level': form.cleaned_data['levels'],

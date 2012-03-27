@@ -18,10 +18,13 @@ class GetQuery(template.Node):
     def render(self, context):
         query_dict = self.query_dict.resolve(context).copy()
 
-        print dir(settings)
         for exclude_field in settings.URL_EXCLUDE_FIELDS:
             if query_dict.has_key(exclude_field):
                 del query_dict[exclude_field]
+
+        for item, value in query_dict.items():
+            if query_dict[item] == "":
+                del query_dict[item]
 
         if type(self.value) == unicode:
             query_dict[self.key] = self.value
