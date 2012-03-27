@@ -10,7 +10,7 @@
     - else
         %span.help_text {{ app.levels.all|join:", " }}
 
-%p {{ app.description }}
+%p {{ app.description|linebreaks }}
 
 - if app.link
     %p

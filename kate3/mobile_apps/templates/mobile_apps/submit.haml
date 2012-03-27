@@ -33,11 +33,11 @@
                             {% endif %}
                     .control-group
                         %lable.control-label
-                            %strong {{ form.description.label }}
+                            %strong {{ form.educational_uses.label }}
                         .controls
-                            {{ form.description }}
-                            - if form.description.errors
-                                .alert.alert-error {{ form.description.errors|join:", " }}
+                            {{ form.educational_uses }}
+                            - if form.educational_uses.errors
+                                .alert.alert-error {{ form.educational_uses.errors|join:", " }}
                     .control-group
                         %lable.control-label {{ form.type.label }}
                         .controls
