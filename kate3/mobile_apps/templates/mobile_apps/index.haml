@@ -1,6 +1,7 @@
 - extends "mobile_apps/base_mobile_apps.haml"
 
 - load title
+- load get_query
 
 - block title
     - title "Mobile Apps"
@@ -23,6 +24,29 @@
                 %h3 No apps
                 %p There are no apps available for this search
 
+            {% if paginator.count > 1 %}
+                .pagination
+                    %ul
+                        {% if this_page.has_previous %}
+                            %li
+                                %a{:href => "{% url mobile_apps_index %}?{% get_query get_request page this_page.previous_page_number %}"} &larr;
+                        {% else %}
+                            %li.disabled
+                                %a &larr;
+                        {% endif %}
+
+                        %li.disabled
+                            %a Page {{ page }} of {{ paginator.num_pages }}
+
+                        {% if this_page.has_next %}
+                            %li
+                                %a{:href => "{% url mobile_apps_index %}?{% get_query get_request page this_page.next_page_number %}"} &rarr;
+                        {% else %}
+                            %li.disabled
+                                %a &rarr;
+                        {% endif %}
+            {% endif %}
+
         .span6
             %h3 About
 
@@ -43,30 +67,77 @@
                     %h4 Free or Paid
                     %ul.nav.nav-tabs.nav-stacked
                         %li
-                            %a{:href => "{% url mobile_apps_index %}?free=1"} Free
+                            <a href="{% url mobile_apps_index %}?{% get_query get_request free "all" %}">
+                                - if not get_request.free
+                                    %strong All
+                                - else
+                                    All
+                            </a>
                         %li
-                            %a{:href => "{% url mobile_apps_index %}?free=0"} Paid
+                            <a href="{% url mobile_apps_index %}?{% get_query get_request free "1" %}">
+                                - if get_request.free == "1" 
+                                    %strong Free
+                                - else
+                                    Free
+                            </a>
+                        %li
+                            <a href="{% url mobile_apps_index %}?{% get_query get_request free "0" %}">
+                                - if get_request.free == "0"
+                                    %strong Paid
+                                - else
+                                    Paid
+                            </a>
 
                     %h4 Types
                     %ul.nav.nav-tabs.nav-stacked
+                        %li
+                            <a href="{% url mobile_apps_index %}?{% get_query get_request type "all" %}">
+                                - if not get_request.type
+                                    %strong All
+                                - else
+                                    All
+                            </a>
                         -for type in types
                             %li
-                                %a{:href => "{% url mobile_apps_index %}?type={{ type.id }}"}
-                                    {{ type }}
+                                %a{:href => "{% url mobile_apps_index %}?{% get_query get_request type type.id %}"}
+                                    - if get_request.type == type.id
+                                        %strong {{ type }}
+                                    - else
+                                        {{ type }}
 
                     %h4 Content Areas
                     %ul.nav.nav-tabs.nav-stacked
+                        %li
+                            <a href="{% url mobile_apps_index %}?{% get_query get_request content_areas "all" %}">
+                                - if not get_request.content_areas
+                                    %strong All
+                                - else
+                                    All
+                            </a>
                         - for content_area in content_areas
                             %li
-                                %a{:href => "{% url mobile_apps_index %}?content_areas={{ content_area.id }}"}
-                                    {{ content_area }}
+                                %a{:href => "{% url mobile_apps_index %}?{% get_query get_request content_areas content_area.id %}"}
+                                    - if get_request.content_areas == content_area.id
+                                        %strong {{ content_area }}
+                                    - else
+                                        {{ content_area }}
 
                 .span3
                     %h4 Levels
                     %ul.nav.nav-tabs.nav-stacked
+                        %li
+                            <a href="{% url mobile_apps_index %}?{% get_query get_request levels "all" %}">
+                                - if not get_request.levels
+                                    %strong All
+                                - else
+                                    All
+                            </a>
                         - for level in levels
                             %li
-                                %a{:href => "{% url mobile_apps_index %}?levels={{ level.id }}"}
-                                    {{ level }}
+                                %a{:href => "{% url mobile_apps_index %}?{% get_query get_request levels level.id %}"}
+                                    - if get_request.levels == level.id
+                                        %strong {{ level }}
+                                    - else
+                                        {{ level }}
 
             

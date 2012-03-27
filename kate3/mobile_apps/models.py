@@ -28,6 +28,9 @@ class App(models.Model):
     def __unicode__(self):
         return "%s for %s" % (self.name, self.type)
 
+    class Meta:
+        ordering = ('name',)
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.created_at = datetime.now()

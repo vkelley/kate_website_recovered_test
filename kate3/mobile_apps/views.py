@@ -1,4 +1,7 @@
+import urllib
+
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
@@ -13,32 +16,56 @@ def index(request):
 
     filtered = False
 
-    if request.GET.has_key('free'):
+    get_request = request.GET.copy()
+
+    for item, value in get_request.items():
+        if get_request[item] == "all":
+                del get_request[item]
+
+    for item in ['type', 'levels', 'content_areas']:
+        if get_request.has_key(item):
+            get_request[item] = int(get_request[item])
+
+    if get_request.has_key('free'):
         if request.GET['free'] == "1":
             apps = apps.filter(cost='0.00')
         elif request.GET['free'] == "0":
             apps = apps.exclude(cost='0.00')
         filtered = True
 
-    if request.GET.has_key('type'):
+    if get_request.has_key('type'):
         apps = apps.filter(type__id=request.GET['type'])
         filtered = True
 
-    if request.GET.has_key('levels'):
+    if get_request.has_key('levels'):
         apps = apps.filter(levels__id=request.GET['levels'])
         filtered = True
 
-    if request.GET.has_key('content_areas'):
+    if get_request.has_key('content_areas'):
         apps = apps.filter(content_areas__id=request.GET['content_areas'])
         filtered = True
+
+    paginator = Paginator(apps, 10)
+    page = int(request.GET.get('page', 1))
 
     levels = Level.objects.all()
     content_areas = ContentArea.objects.all()
     types = Type.objects.all()
+
+    context = {
+        'apps': paginator.page(page).object_list,
+        'this_page': paginator.page(page),
+        'paginator': paginator,
+        'page': page,
+        'get_request': get_request,
+        'levels': levels, 
+        'content_areas': content_areas,
+        'types': types,
+        'filtered': filtered
+    }
+
     return render_to_response('mobile_apps/index.haml',
-                              {'apps': apps, 'levels': levels, 
-                               'content_areas': content_areas,
-                               'types': types, 'filtered': filtered},
+                              context,
                               context_instance=RequestContext(request))
 
 @login_required
