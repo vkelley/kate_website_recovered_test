@@ -32,3 +32,13 @@ class App(models.Model):
         if not self.id:
             self.created_at = datetime.now()
         super(App, self).save(*args, **kwargs)
+
+    def for_all_levels(self):
+        if self.levels.count() == Level.objects.count():
+            return True
+        return False
+
+    def for_all_areas(self):
+        if self.content_areas.count() == ContentArea.objects.count():
+            return True
+        return False

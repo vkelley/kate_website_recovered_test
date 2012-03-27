@@ -5,7 +5,10 @@
         %span.label.label-info Cost: Free
     - else
         %span.label.label-success Cost: {{ app.cost|make_money }}
-    %span.help_text {{ app.levels.all|join:", " }}
+    - if app.for_all_levels
+        %span.help_text For all grade levels
+    - else
+        %span.help_text {{ app.levels.all|join:", " }}
 
 %p {{ app.description }}
 
