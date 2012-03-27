@@ -11,7 +11,7 @@ class TechnologyStandardAdmin(admin.ModelAdmin):
         ('General', {'fields': ('point', 'subpoint', 'description', 'category', 'name'),}),
     )
     class Media:
-        js = ('/static/js/admin.js')
+        js = ('/static/js/admin.js',)
 
 class ProgramOfStudyAdmin(admin.ModelAdmin):
     search_fields = ('code',)
