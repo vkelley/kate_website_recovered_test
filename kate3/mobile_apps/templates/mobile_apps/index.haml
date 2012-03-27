@@ -13,7 +13,7 @@
                     %h3 
                         %a{:href => "{% url mobile_apps_view app.id %}"}
                             {{ app }}
-                        - if app.content_areas.count == 8
+                        - if app.for_all_areas
                             %small For all areas
                         - else
                             %small {{ app.content_areas.all|join:", " }}
