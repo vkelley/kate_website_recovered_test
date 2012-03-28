@@ -15,8 +15,8 @@ class Type(models.Model):
 
 class App(models.Model):
     name = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
-    type = models.ForeignKey(Type, blank=True, null=True)
+    description = models.TextField()
+    type = models.ForeignKey(Type)
     cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     link = models.URLField(max_length=200, verify_exists=True, blank=True, null=True)
     levels = models.ManyToManyField(Level, blank=True, null=True)
