@@ -51,7 +51,7 @@ class App(models.Model):
         super(App, self).save(*args, **kwargs)
 
     def get_itunes_info(self):
-        if self.type == 'iOS':
+        if self.type.name == 'iOS':
             try:
                 item = itunes.search(query=self.name, media='software')[0]
                 self.store_name = item.name
