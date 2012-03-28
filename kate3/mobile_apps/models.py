@@ -6,6 +6,7 @@ from django.db import models
 import itunes
 
 from core.models import ContentArea, Level
+from utils.google_play import GetAppInfo
 
 class Type(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -46,6 +47,7 @@ class App(models.Model):
         if not self.id:
             self.created_at = datetime.now()
             self.get_itunes_info()
+            self.get_android_info()
         super(App, self).save(*args, **kwargs)
 
     def get_itunes_info(self):
@@ -60,6 +62,18 @@ class App(models.Model):
                 self.store_num_ratings = item.num_ratings
             except:
                 pass
+
+    def get_android_info(self):
+        if self.type.name == 'Android':
+            try:
+                i = GetAppInfo(self.name)
+                results = i.get_info()
+                self.store_name = results['name']
+                self.store_cost = results['cost']
+                self.store_link = results['url']
+            except:
+                pass
+
 
     def for_all_levels(self):
         if self.levels.count() == Level.objects.count():
