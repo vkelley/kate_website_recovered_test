@@ -27,31 +27,31 @@
                         %label.control-label
                             %strong {{ form.name.label }}
                         .controls
+                            {{ form.name }}
                             {% if form.name.errors %}
                                 .alert.alert-error {{ form.name.errors|join:", " }}
                             {% endif %}
-                            {{ form.name }}
                     .control-group
                         %lable.control-label
                             %strong Brief Description
                         .controls
-                            - if form.description.errors
-                                    .alert.alert-error {{ form.description.errors|join:", " }}
                             {{ form.description }}
+                            - if form.description.errors
+                                .alert.alert-error {{ form.description.errors|join:", " }}
                     .control-group
                         %lable.control-label
                             {{ form.educational_uses.label }}
                         .controls
+                            {{ form.educational_uses }}
                             - if form.educational_uses.errors
                                 .alert.alert-error {{ form.educational_uses.errors|join:", " }}
-                            {{ form.educational_uses }}
                     .control-group
                         %lable.control-label 
                             %strong {{ form.type.label }}
                         .controls
+                            {{ form.type }}
                             - if form.type.errors
                                 .alert.alert-error {{ form.type.errors|join:", " }}
-                            {{ form.type }}
                     .control-group
                         %lable.control-label {{ form.levels.label }}
                         .controls
