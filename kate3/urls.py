@@ -6,6 +6,7 @@ from userena import views as userena_views
 
 from accounts.forms import EditFormExtra
 from tick.api import *
+from mobile_apps.api import AppResource, TypeResource
 
 from userena import views as userena_views
 
@@ -19,6 +20,8 @@ v1_api.register(ContentAreaResource())
 v1_api.register(LevelResource())
 v1_api.register(ResourceResource())
 v1_api.register(TechnologyStandardResource())
+v1_api.register(AppResource())
+v1_api.register(TypeResource())
 
 urlpatterns = patterns('',
     url(r'^api/', include(v1_api.urls)),

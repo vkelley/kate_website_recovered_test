@@ -53,11 +53,17 @@ class LevelResource(ModelResource):
         queryset = Level.objects.all()
         fields = ['name',]
         include_resource_uri = False
+        filtering = {
+            'name': ['exact',]
+        }
 
 class ContentAreaResource(ModelResource):
     class Meta:
         queryset = ContentArea.objects.all()
         include_resource_uri = False
+        filtering = {
+            'name': ['exact',]
+        }
 
 class TechnologyStandardResource(ModelResource):
     class Meta:
