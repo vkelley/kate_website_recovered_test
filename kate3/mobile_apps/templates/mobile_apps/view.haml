@@ -18,6 +18,12 @@
 
             {% include "mobile_apps/_app.haml" %}
 
+            - if app.educational_uses
+                %hr
+                %h4 Educational Uses
+                %p {{ app.educational_uses|linebreaks }}
+                %hr
+
             %a.btn{:href => "{% url mobile_apps_index %}"}
                %i.icon-th-list
                List all mobile apps
