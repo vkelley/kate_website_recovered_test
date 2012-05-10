@@ -17,6 +17,9 @@ class TypeResource(ModelResource):
             'name': ['exact',]
         }
 
+        authentication = Authentication()
+        authorization = ReadOnlyAuthorization()
+
 class AppResource(ModelResource):
     content_areas = fields.ToManyField('tick.api.ContentAreaResource', 'content_areas', full=True)
     levels = fields.ToManyField('tick.api.LevelResource', 'levels', full=True)
@@ -28,7 +31,7 @@ class AppResource(ModelResource):
         detail_allowed_methods = ['get',]
 
         authentication = Authentication()
-        authorization = ReadOnlyAuthorization()
+        authorization = Authorization()
 
         fields = ['name', 'description', 'educational_uses', 'cost', 'link']
 
