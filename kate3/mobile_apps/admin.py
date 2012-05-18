@@ -3,8 +3,8 @@ from django.contrib import admin
 from mobile_apps.models import App, Type
 
 class AppAdmin(admin.ModelAdmin):
-    list_filter = ('cost', 'published')
-    list_display = ('name', 'type', 'cost', 'published')
+    list_filter = ('cost', 'published', 'user')
+    list_display = ('name', 'type', 'cost', 'published', 'user')
     fieldsets = (
         ('App', {'fields': (
             'name',
