@@ -23,6 +23,8 @@ class App(models.Model):
     levels = models.ManyToManyField(Level, blank=True, null=True)
     content_areas = models.ManyToManyField(ContentArea, blank=True, null=True)
 
+    productivity = models.BooleanField()
+
     user = models.ForeignKey(User, blank=True, null=True)
     published = models.BooleanField()
 

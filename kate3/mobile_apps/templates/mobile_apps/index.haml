@@ -105,39 +105,65 @@
                                     - else
                                         {{ type }}
 
-                    %h4 Content Areas
-                    %ul.nav.nav-tabs.nav-stacked
-                        %li
-                            <a href="{% url mobile_apps_index %}?{% get_query get_request content_areas "all" %}">
-                                - if not get_request.content_areas
-                                    %strong All
-                                - else
-                                    All
-                            </a>
-                        - for content_area in content_areas
+                    - if not productivity
+                        %h4 Content Areas
+                        %ul.nav.nav-tabs.nav-stacked
                             %li
-                                %a{:href => "{% url mobile_apps_index %}?{% get_query get_request content_areas content_area.id %}"}
-                                    - if get_request.content_areas == content_area.id
-                                        %strong {{ content_area }}
+                                <a href="{% url mobile_apps_index %}?{% get_query get_request content_areas "all" %}">
+                                    - if not get_request.content_areas
+                                        %strong All
                                     - else
-                                        {{ content_area }}
+                                        All
+                                </a>
+                            - for content_area in content_areas
+                                %li
+                                    %a{:href => "{% url mobile_apps_index %}?{% get_query get_request content_areas content_area.id %}"}
+                                        - if get_request.content_areas == content_area.id
+                                            %strong {{ content_area }}
+                                        - else
+                                            {{ content_area }}
 
                 .span3
-                    %h4 Levels
+                    %h4 App Use
                     %ul.nav.nav-tabs.nav-stacked
                         %li
-                            <a href="{% url mobile_apps_index %}?{% get_query get_request levels "all" %}">
-                                - if not get_request.levels
+                            <a href="{% url mobile_apps_index %}?{% get_query get_request productivity "all" %}">
+                                - if not get_request.productivity
                                     %strong All
                                 - else
                                     All
                             </a>
-                        - for level in levels
+                        %li
+                            <a href="{% url mobile_apps_index %}?{% get_query get_request productivity "0" %}">
+                                - if get_request.productivity == "0"
+                                    %strong Educational
+                                - else
+                                    Educational
+                            </a>
+                        %li
+                            <a href="{% url mobile_apps_index %}?{% get_query get_request productivity "1" %}">
+                                - if get_request.productivity == "1"
+                                    %strong Productivity
+                                - else
+                                    Productivity
+                            </a>
+
+                    - if not productivity
+                        %h4 Levels
+                        %ul.nav.nav-tabs.nav-stacked
                             %li
-                                %a{:href => "{% url mobile_apps_index %}?{% get_query get_request levels level.id %}"}
-                                    - if get_request.levels == level.id
-                                        %strong {{ level }}
+                                <a href="{% url mobile_apps_index %}?{% get_query get_request levels "all" %}">
+                                    - if not get_request.levels
+                                        %strong All
                                     - else
-                                        {{ level }}
+                                        All
+                                </a>
+                            - for level in levels
+                                %li
+                                    %a{:href => "{% url mobile_apps_index %}?{% get_query get_request levels level.id %}"}
+                                        - if get_request.levels == level.id
+                                            %strong {{ level }}
+                                        - else
+                                            {{ level }}
 
             

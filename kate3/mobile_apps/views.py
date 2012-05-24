@@ -15,12 +15,13 @@ def index(request):
     apps = App.objects.filter(published=True)
 
     filtered = False
+    productivity = False
 
     get_request = request.GET.copy()
 
     for item, value in get_request.items():
         if get_request[item] == "all":
-                del get_request[item]
+            del get_request[item]
 
     for item in ['type', 'levels', 'content_areas']:
         if get_request.has_key(item):
@@ -35,6 +36,14 @@ def index(request):
 
     if get_request.has_key('type'):
         apps = apps.filter(type__id=request.GET['type'])
+        filtered = True
+
+    if get_request.has_key('productivity'):
+        if get_request['productivity'] == "1":
+            apps = apps.filter(productivity=True)
+            productivity = True
+        else:
+            apps = apps.filter(productivity=False)
         filtered = True
 
     if get_request.has_key('levels'):
@@ -61,7 +70,8 @@ def index(request):
         'levels': levels, 
         'content_areas': content_areas,
         'types': types,
-        'filtered': filtered
+        'filtered': filtered,
+        'productivity': productivity,
     }
 
     return render_to_response('mobile_apps/index.haml',

@@ -15,6 +15,7 @@ class AppAdmin(admin.ModelAdmin):
             'link',
             'levels',
             'content_areas',
+            'productivity',
         )}),
 
         ('Info', {'fields': (

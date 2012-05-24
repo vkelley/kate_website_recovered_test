@@ -30,7 +30,6 @@ class GetQuery(template.Node):
             query_dict[self.key] = self.value
         else:
             query_dict[self.key] = self.value.resolve(context)
-        print query_dict
 
         return urllib.urlencode(query_dict)
 
