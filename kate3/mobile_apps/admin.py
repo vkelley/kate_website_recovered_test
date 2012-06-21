@@ -4,7 +4,7 @@ from mobile_apps.models import App, Type
 
 class AppAdmin(admin.ModelAdmin):
     list_filter = ('cost', 'published', 'created_at', 'user')
-    list_display = ('name', 'type', 'cost', 'published', 'user')
+    list_display = ('name', 'type', 'cost', 'published', 'created_at', 'user')
     fieldsets = (
         ('App', {'fields': (
             'name',
