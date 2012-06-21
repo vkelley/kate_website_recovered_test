@@ -17,9 +17,9 @@ SOURCE_CMD="source bin/activate"
 BASE_CMD="$GUNICORN $DEFAULT_ARGS"
 
 SERVER1_PORT='8000'
-SERVER1_PID="/tmp/$SERVER1_PORT.pid"
+SERVER1_PID="/var/run/$SERVER1_PORT.pid"
 SERVER2_PORT='8001'
-SERVER2_PID="/tmp/$SERVER2_PORT.pid"
+SERVER2_PID="/var/run/$SERVER2_PORT.pid"
 
 start_server () {
   if [ -f $1 ]; then
