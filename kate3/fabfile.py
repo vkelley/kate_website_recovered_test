@@ -6,7 +6,7 @@ from fabric.contrib.console import confirm
 from fabric.contrib.files import exists
 from fabric.operations import _prefix_commands, _prefix_env_vars
 
-env.proj_repo = 'git@github.com:smizell/kate3.git'
+env.proj_repo = 'git@github.com:katemsu/kate3.git'
 env.proj_name = 'smizell'
 env.config_root = join(realpath(dirname(__file__)), 'config')
 
