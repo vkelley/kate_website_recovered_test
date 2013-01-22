@@ -19,7 +19,7 @@
 	.span7
 		- for edresource in edresource_category.edresource_set.all
 			%h4 
-				%a{:href => "{{ edresource.link }}"}
+				%a{:href => "{{ edresource.url }}"}
 					{{ edresource }}
 			{{ edresource.description|safe }}
 
