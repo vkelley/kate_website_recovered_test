@@ -1,0 +1,67 @@
+{% extends "standards/base_standards.haml" %}
+{% load title %}
+
+{% block title %}{% title "Common Core" %}{% endblock %}
+
+{% block standards_content %}
+
+.page-header
+	%h2 Common Core
+
+.row
+    .span8
+        - if standard
+            %h3 {{ standard.standard_code }}
+            .help_text.info
+                  - if standard.cluster
+                        Cluster: {{ standard.cluster }} </br>
+                  - else
+                  Category: {{ standard.category }} </br>
+                  - if standard.subcategory
+                        Subcategory: {{ standard.subcategory }}
+                  - else
+            %p {{ standard.description|safe }}
+            #accordion2.accordion
+            	.accordion-group
+            		.accordion-heading
+            			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+            				Activities
+            			</a>
+            		#collapseOne.accordion-body.collapse
+            			.accordion-inner
+            				- for activity in standard.activity_set.all
+            					- if activity
+            						%h5 <a href="{{ activity.link }}">{{ activity.name }}</a>
+            						.help_text.info
+            							{{ activity.description|safe }}
+            						%hr
+            	.accordion-group
+            		.accordion-heading
+            			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            				Websites
+            			</a>
+            		#collapseTwo.accordion-body.collapse
+            			.accordion-inner
+            				- for website in standard.website_set.all
+            					- if website
+            						%h5 <a href="{{ website.link }}">{{ website.name }}</a>
+            						.help_text.info
+            							{{ website.description|safe }}
+            						%hr
+            	.accordion-group
+            		.accordion-heading
+            			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+            				Applications
+            			</a>
+            		#collapseThree.accordion-body.collapse
+            			.accordion-inner
+            				- for application in standard.application_set.all
+            					- if application
+            						%h5 <a href="{{ application.link }}">{{ application.name }}</a>
+            						.help_text.info
+            							{{ application.description|safe }}
+      %hr
+
+	{% include "standards/_subject_item.haml" %}
+
+{% endblock %}

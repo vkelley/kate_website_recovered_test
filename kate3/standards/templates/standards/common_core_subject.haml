@@ -1,0 +1,28 @@
+{% extends "standards/base_standards.haml" %}
+{% load title %}
+
+{% block title %}{% title "Common Core" %}{% endblock %}
+
+{% block standards_content %}
+
+.page-header
+	%h2 Common Core Standards
+
+
+
+
+.row
+    .span7
+        - for common_core_subject in common_core_subjects
+            %h3 <a href="{% url common_core_detail common_core_subject.standard_code %}">{{ common_core_subject.standard_code }}</a>
+            .help_text.info
+            	Category: {{ common_core_subject.category }} </br>
+            	- if common_core_subject.subcategory
+            		Subcategory: {{ common_core_subject.subcategory }}
+            	-else
+            %p {{ common_core_subject.description|safe }}
+            %hr
+
+    {% include "standards/_subject_item.haml" %}
+
+{% endblock %}
