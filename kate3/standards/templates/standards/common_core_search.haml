@@ -15,14 +15,15 @@
 .row
     .span8
         {% for standard in common_core %}
-            %h4 <a href="{% url common_core_detail standard.standard_code %}">{{ standard.standard_code }}</a>
-            .help_text.info
-                Category: {{ standard.category }} </br>
-                - if standard.subcategory
-                    Subcategory: {{ standard.subcategory }}
-                - else
-            %p {{ standard.description|safe }}
-            %hr
+            .result
+                %h4 <a href="{% url common_core_detail standard.standard_code %}">{{ standard.standard_code }}</a>
+                .help_text.info
+                    Category: {{ standard.category }} </br>
+                    - if standard.subcategory
+                        Subcategory: {{ standard.subcategory }}
+                    - else
+                %p {{ standard.description|safe }}
+                %hr
         {% empty %}
             %h4 Sorry, no results are available for your search query.
         {% endfor %}
