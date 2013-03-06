@@ -61,6 +61,9 @@ def common_core_search(request):
                 common_core = common_core.filter(Q(description__contains=form.cleaned_data['keyword']) | \
                              Q(description__contains=form.cleaned_data['keyword']))
 
+            if form.cleaned_data['standard']:
+                common_core = common_core.filter(standard_code=form.cleaned_data['standard'])
+
             if form.cleaned_data['subject']:
                 common_core = common_core.filter(subject=form.cleaned_data['subject'])
 

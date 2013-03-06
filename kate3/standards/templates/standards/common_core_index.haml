@@ -13,6 +13,10 @@
                 {{ form.keyword }}
             .form-horizontal
                 .control-group
+                    %label.control-label {{ form.standard.label }}
+                    .controls
+                        {{ form.standard }}
+                .control-group
                     %label.control-label {{ form.subject.label }}
                     .controls
                         {{ form.subject }}
