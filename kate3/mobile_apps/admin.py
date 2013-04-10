@@ -31,6 +31,7 @@ class AppAdmin(admin.ModelAdmin):
             'store_link',
         )})
     )
+    search_fields = ('name',)
 
     class Media:
         js = ('/static/js/mobile_apps_admin.js',)
