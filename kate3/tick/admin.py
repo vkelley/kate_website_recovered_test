@@ -55,7 +55,7 @@ class ResourceAdmin(admin.ModelAdmin):
         ('Other', {'classes': 'collapse', 'fields': ('published', 'disabled')}),
     )
     list_display = ('title', 'created', 'published', 'aligned_to_common_core','entered_by', 'aligned_by', 'status', 'user')
-    list_filter = ('aligned_to_common_core', 'status', 'created', 'content_areas', 'levels', 'resource_type', 'tech_sub_component', 'entered_by', 'published', 'disabled', 'user')
+    list_filter = ('aligned_to_common_core', 'status', 'created', 'content_areas', 'levels', 'resource_type', 'tech_sub_component', 'entered_by', 'published', 'disabled')
     search_fields = ('title', 'description')
     date_hierarchy = 'created'
     save_on_top = True
