@@ -1,0 +1,31 @@
+{% extends "standards/base_standards.haml" %}
+
+- load title
+
+- block title
+    - title "Common Core" "Search"
+
+{% block standards_content %}
+
+.page-header
+    %h3 Search Results
+    .help_text
+        %a{:href => "{% url common_core_index %}"} Back to Common Core Standards search
+
+.row
+    .span8
+        {% for standard in common_core %}
+            .result
+                %h4 <a href="{% url common_core_detail standard.standard_code %}">{{ standard.standard_code }}</a>
+                .help_text.info
+                    Category: {{ standard.category }} </br>
+                    - if standard.subcategory
+                        Subcategory: {{ standard.subcategory }}
+                    - else
+                %p {{ standard.description|safe }}
+                %hr
+        {% empty %}
+            %h4 Sorry, no results are available for your search query.
+        {% endfor %}
+
+{% endblock %}

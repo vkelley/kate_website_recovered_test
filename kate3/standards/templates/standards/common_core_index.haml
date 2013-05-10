@@ -1,0 +1,50 @@
+{% extends "standards/base_standards.haml" %}
+{% load title %}
+
+{% block title %}{% title "Common Core" %}{% endblock %}
+
+{% block standards_content %}
+
+.row
+    .span8
+        %form{:method => "post", :action => "{% url common_core_search %}"}
+            {% csrf_token %}
+            .well.form-search
+                {{ form.keyword }}
+            .form-horizontal
+                .control-group
+                    %label.control-label {{ form.standard.label }}
+                    .controls
+                        {{ form.standard }}
+                .control-group
+                    %label.control-label {{ form.subject.label }}
+                    .controls
+                        {{ form.subject }}
+                .control-group
+                    %label.control-label {{ form.grade.label }}
+                    .controls
+                        {{ form.grade }}
+                .control-group
+                    %label.control-label {{ form.category.label }}
+                    .controls
+                        {{ form.category }}
+                .control-group
+                    %label.control-label {{ form.subcategory.label }}
+                    .controls
+                        {{ form.subcategory }}
+                .control-group
+                    %label.control-label {{ form.cluster.label }}
+                    .controls
+                        {{ form.cluster }}
+                .form-actions
+                    %button.btn.btn-primary Search
+
+    .span3.offset1
+        %h4 More Resources
+        %p Looking for resources to integrate technology into your classroom? Check out TICK, a repository of instructional lesson plans, activities, and resources for teachers in Kentucky.
+        %p
+            %a{:href => "{% url tick_index %}"} Visit TICK
+
+    {% include "standards/_subject_item.haml" %}
+
+{% endblock %}

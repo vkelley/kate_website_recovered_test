@@ -1,0 +1,45 @@
+{% extends "standards/base_standards.haml" %}
+{% load title %}
+
+{% block title %}{% title "Common Core" %}{% endblock %}
+
+{% block standards_content %}
+
+.page-header
+    %h3 
+        Category: {{ category.name }}
+        {% if subcategory %}
+            %small - {{ subcategory }}
+        {% endif %}
+    .help_text
+        %a{:href => "{% url common_core_index %}"} Back to Common Core Search
+
+.row
+    .span7
+        - for standard in standards
+            %h4
+                %a{:href => "{% url common_core_detail standard.standard_code %}"}
+                    {{ standard }}
+            - if standard.subcategory
+                  %p.help_text {{ standard.subcategory }}
+            - else
+
+            %p {{ standard.description|safe }}
+
+            %hr 
+
+    .span4.offset1
+        %h4 Filter by subcategory
+        %ul.nav.nav-tabs.nav-stacked
+            %li
+                %a{:href => "{% url category_view category.id %}"} All Levels
+            - for s in subcategories 
+                %li
+                    %a{:href => "{% url subcategory_view category.id s.id %}"}
+                        {% if s.id = subcategory.id %}
+                            %strong {{ s }}
+                        {% else %}
+                            {{ s }}
+                        {% endif %}
+
+{% endblock %}
