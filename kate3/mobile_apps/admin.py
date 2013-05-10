@@ -3,8 +3,8 @@ from django.contrib import admin
 from mobile_apps.models import App, Type
 
 class AppAdmin(admin.ModelAdmin):
-    list_filter = ('cost', 'published', 'created_at', 'user')
     list_display = ('name', 'type', 'cost', 'published', 'created_at', 'user')
+    list_filter = ('cost', 'published', 'created_at', 'user')
     fieldsets = (
         ('App', {'fields': (
             'name',
@@ -30,6 +30,7 @@ class AppAdmin(admin.ModelAdmin):
             'store_link',
         )})
     )
+    search_fields = ('name',)
 
     class Media:
         js = ('/static/js/mobile_apps_admin.js',)
